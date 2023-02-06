@@ -227,6 +227,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757d1d294d7488d4187e96e3cd229d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1406555048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1406555051}
+  - component: {fileID: 1406555050}
+  - component: {fileID: 1406555049}
+  m_Layer: 0
+  m_Name: CharPrototype
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1406555049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406555048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262076e177ee9e64488fd09f319e931c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charList: {fileID: 0}
+  crimePrefab: {fileID: 0}
+--- !u!114 &1406555050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406555048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5009b8ae8efdd9545a3b0f3e3205bfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: 
+  race: V
+  Str: 0
+  Dex: 0
+  Sta: 0
+  Cha: 0
+  Man: 0
+  Com: 0
+  Int: 0
+  Per: 0
+  Res: 0
+  athletics: 0
+  stealth: 0
+  brawl: 0
+  firearms: 0
+  intimidation: 0
+  leadership: 0
+  persuasion: 0
+  streetwise: 0
+  subterfuge: 0
+  academics: 0
+  awareness: 0
+  investigation: 0
+  technology: 0
+  survival: 0
+--- !u!4 &1406555051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406555048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 621.4062, y: 404.61453, z: -49767.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1489559897
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +399,7 @@ GameObject:
   - component: {fileID: 2114455244}
   - component: {fileID: 2114455243}
   m_Layer: 0
-  m_Name: PlayerCharList
+  m_Name: PlayerChar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

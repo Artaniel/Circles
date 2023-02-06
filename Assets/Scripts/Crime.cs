@@ -32,6 +32,11 @@ public class Crime : MonoBehaviour
         {
             footPrint.type = Footprint.FootprintType.body;
         }
+        else if (desc == "prototype")
+        {
+            footPrint.type = Footprint.FootprintType.witness;
+        }
+           
         transform.parent = guilty.transform;
         footprints.Add(footPrint);
     }

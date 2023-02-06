@@ -32,6 +32,8 @@ public class CharList : MonoBehaviour
     public int survival;
     //public Dictionary<string, int> additions;
 
+    public List<Crime> crimeList;
+
     public static CharList playerCharList = null;
 
     private void Awake()
