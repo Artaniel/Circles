@@ -35,6 +35,7 @@ public class CharList : MonoBehaviour
     public List<Crime> crimeList;
 
     public static CharList playerCharList = null;
+    public bool isPlayer = false;
 
     private void Awake()
     {
@@ -42,9 +43,7 @@ public class CharList : MonoBehaviour
     }
 
     private void Init() {
-
-        if (!playerCharList)
-            if (name == "PlayerCharList")
-                playerCharList = this;
+        if (isPlayer)
+            playerCharList = this;
     }
 }
