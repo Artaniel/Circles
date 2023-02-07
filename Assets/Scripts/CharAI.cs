@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharAI : MonoBehaviour
 {
     public CharList charList;
-    public GameObject crimePrefab;
+    public GameObject crimePrefab;    
 
     private void Awake()
     {

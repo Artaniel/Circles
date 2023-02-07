@@ -6,6 +6,7 @@ public class IntroductionPhase : Phase
 {
     private void Start()
     {
+        CharacterInit();
         PhaseRun();
     }
 
@@ -18,6 +19,17 @@ public class IntroductionPhase : Phase
 
     override protected void InputParcer()
     {
+
+    }
+
+    private void CharacterInit() {
+        foreach (CharList charList in CharList.allCharLists)
+            if (!charList.isPlayer)
+            {
+                charList.GetComponent<CharAI>().CommitCrime();
+                charList.GetComponent<CharAI>().CommitCrime();
+                charList.GetComponent<CharAI>().CommitCrime();
+            }
 
     }
 }

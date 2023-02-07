@@ -35,11 +35,13 @@ public class CharList : MonoBehaviour
     public List<Crime> crimeList;
 
     public static CharList playerCharList = null;
-    public bool isPlayer = false;
+    public bool isPlayer = false; 
+    public static List<CharList> allCharLists = new List<CharList>();
 
     private void Awake()
     {
         Init();
+        allCharLists.Add(this);
     }
 
     private void Init() {
