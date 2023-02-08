@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharList : MonoBehaviour
+public class CharSheet : MonoBehaviour
 {
     public string charName;
     public string race;
@@ -34,9 +34,9 @@ public class CharList : MonoBehaviour
 
     public List<Crime> crimeList;
 
-    public static CharList playerCharList = null;
+    public static CharSheet playerCharSheet = null;
     public bool isPlayer = false; 
-    public static List<CharList> allCharLists = new List<CharList>();
+    public static List<CharSheet> allCharLists = new List<CharSheet>();
 
     private void Awake()
     {
@@ -46,6 +46,6 @@ public class CharList : MonoBehaviour
 
     private void Init() {
         if (isPlayer)
-            playerCharList = this;
+            playerCharSheet = this;
     }
 }

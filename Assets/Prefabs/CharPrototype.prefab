@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1403034657043046425}
-  - component: {fileID: 1403034657043046424}
+  - component: {fileID: 7085173916320293921}
   - component: {fileID: 1403034657043046427}
   m_Layer: 0
   m_Name: CharPrototype
@@ -31,9 +31,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1403034657043046424
+--- !u!114 &7085173916320293921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,11 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1403034657043046426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5009b8ae8efdd9545a3b0f3e3205bfa0, type: 3}
+  m_Script: {fileID: 11500000, guid: e0c5466261677304b9f0178446496d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charName: 
-  race: V
+  race: 
   Str: 0
   Dex: 0
   Sta: 0
@@ -84,6 +84,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262076e177ee9e64488fd09f319e931c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charList: {fileID: 1403034657043046424}
+  charList: {fileID: 7085173916320293921}
   crimePrefab: {fileID: 5916384277217921666, guid: 6250668ee338cd840900fb4c15a52789,
     type: 3}

@@ -6,7 +6,7 @@ public class Footprint : MonoBehaviour
 {
     public Crime crime;
     public int difficulty;
-    public enum FootprintType {witness, camera, weapon, blood, body}
+    public enum FootprintType {witness, camera, weapon, blood, body, unknown}
     public FootprintType type;
 
     public static List<Footprint> footprintsList = new List<Footprint>();

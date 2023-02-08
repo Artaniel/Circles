@@ -31,7 +31,7 @@ public class ChoiseButtonsManager : MonoBehaviour
     }
 
     public int AddReplic(string text) { //returns button ID
-        Debug.Log(activeButtons);
+        //Debug.Log(activeButtons);
         buttons[activeButtons].SetActive(true);
         buttonTexts[activeButtons].text = text;
         activeButtons++;

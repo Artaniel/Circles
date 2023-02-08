@@ -23,7 +23,7 @@ public class IntroductionPhase : Phase
     }
 
     private void CharacterInit() {
-        foreach (CharList charList in CharList.allCharLists)
+        foreach (CharSheet charList in CharSheet.allCharLists)
             if (!charList.isPlayer)
             {
                 charList.GetComponent<CharAI>().CommitCrime();

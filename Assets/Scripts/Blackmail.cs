@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Blackmail : MonoBehaviour
 {
-    public CharList ovner;
-    public CharList victim;
+    public CharSheet ovner;
+    public CharSheet victim;
     public Crime crime;
     public Evidence evidence;
 

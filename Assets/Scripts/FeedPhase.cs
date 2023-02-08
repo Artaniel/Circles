@@ -38,68 +38,68 @@ public class FeedPhase : Phase
         int id = buttonManager.currentButtonPressedId;
         if (id == 0)
         { //huntType.assault
-            if (RollManager.Roll(CharList.playerCharList.Dex + CharList.playerCharList.stealth, 6) < 1)
+            if (RollManager.Roll(CharSheet.playerCharSheet.Dex + CharSheet.playerCharSheet.stealth, 6) < 1)
             {
                 maintext.text += Loc.Get("huntAssaultFail1");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы попали на камеру");
+                crime.Init("Во время неудачной охоты вы попали на камеру", CharSheet.playerCharSheet);
             }
-            else if (RollManager.Roll(CharList.playerCharList.Str + CharList.playerCharList.brawl, 6) < 1)
+            else if (RollManager.Roll(CharSheet.playerCharSheet.Str + CharSheet.playerCharSheet.brawl, 6) < 1)
             {
                 maintext.text += Loc.Get("huntAssaultFail2");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы оставили свидетеля");
+                crime.Init("Во время неудачной охоты вы оставили свидетеля", CharSheet.playerCharSheet);
             }
             else
                 maintext.text += Loc.Get("huntSuccess");
         }
         else if (id == 1)
         { //huntType.seduce
-            if (RollManager.Roll(CharList.playerCharList.Cha + CharList.playerCharList.persuasion, 6) < 1)
+            if (RollManager.Roll(CharSheet.playerCharSheet.Cha + CharSheet.playerCharSheet.persuasion, 6) < 1)
             {
                 maintext.text += Loc.Get("huntSeduceFail1");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы оставили труп");
+                crime.Init("Во время неудачной охоты вы оставили труп", CharSheet.playerCharSheet);
             }
-            else if (RollManager.Roll(CharList.playerCharList.Man + CharList.playerCharList.subterfuge, 6) < 1)
+            else if (RollManager.Roll(CharSheet.playerCharSheet.Man + CharSheet.playerCharSheet.subterfuge, 6) < 1)
             {
                 maintext.text += Loc.Get("huntSeduceFail2");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы оставили труп");
+                crime.Init("Во время неудачной охоты вы оставили труп", CharSheet.playerCharSheet);
             }
             else
                 maintext.text += Loc.Get("huntSuccess");
         }
         else if (id == 2)
         { //huntType.animals
-            if (RollManager.Roll(CharList.playerCharList.Per + CharList.playerCharList.awareness, 6) < 1)// уточнить ихсодя из нарратива
+            if (RollManager.Roll(CharSheet.playerCharSheet.Per + CharSheet.playerCharSheet.awareness, 6) < 1)// уточнить ихсодя из нарратива
             {
                 maintext.text += Loc.Get("huntAnimalsFail1");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы оставили свидетеля.");// уточнить ихсодя из нарратива
+                crime.Init("Во время неудачной охоты вы оставили свидетеля.", CharSheet.playerCharSheet);// уточнить ихсодя из нарратива
             }
-            else if (RollManager.Roll(CharList.playerCharList.Res + CharList.playerCharList.survival, 6) < 1)// уточнить ихсодя из нарратива
+            else if (RollManager.Roll(CharSheet.playerCharSheet.Res + CharSheet.playerCharSheet.survival, 6) < 1)// уточнить ихсодя из нарратива
             {
                 maintext.text += Loc.Get("huntAnimalsFail1");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы оставили свидетеля.");// уточнить ихсодя из нарратива
+                crime.Init("Во время неудачной охоты вы оставили свидетеля.", CharSheet.playerCharSheet);// уточнить ихсодя из нарратива
             }
             else
                 maintext.text += Loc.Get("huntSuccess");
         }
         else if (id == 3)
         { //huntType.sleep
-            if (RollManager.Roll(CharList.playerCharList.Res + CharList.playerCharList.streetwise, 6) < 1)// уточнить ихсодя из нарратива
+            if (RollManager.Roll(CharSheet.playerCharSheet.Res + CharSheet.playerCharSheet.streetwise, 6) < 1)// уточнить ихсодя из нарратива
             {
                 maintext.text += Loc.Get("huntSleepFail1");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы оставили свидетеля.");// уточнить ихсодя из нарратива
+                crime.Init("Во время неудачной охоты вы оставили свидетеля.", CharSheet.playerCharSheet);// уточнить ихсодя из нарратива
             }
-            else if (RollManager.Roll(CharList.playerCharList.Man + CharList.playerCharList.streetwise, 6) < 1)// уточнить ихсодя из нарратива
+            else if (RollManager.Roll(CharSheet.playerCharSheet.Man + CharSheet.playerCharSheet.streetwise, 6) < 1)// уточнить ихсодя из нарратива
             {
                 maintext.text += Loc.Get("huntSleepFail2");
                 Crime crime = GameObject.Instantiate(crimePrefab).GetComponent<Crime>();
-                crime.Init("Во время неудачной охоты вы оставили свидетеля.");// уточнить ихсодя из нарратива
+                crime.Init("Во время неудачной охоты вы оставили свидетеля.", CharSheet.playerCharSheet);// уточнить ихсодя из нарратива
             }
             else
                 maintext.text += Loc.Get("huntSuccess");

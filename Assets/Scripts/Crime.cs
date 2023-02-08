@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Crime : MonoBehaviour
 {
-    public CharList guilty;
-    public CharList arbitter;
+    public CharSheet guilty;
+    public CharSheet arbitter;
     public List<Evidence> evidences; 
     public List<Footprint> footprints; 
     public string decription;
 
     public Footprint footprintPrefab;
 
-    public void Init(string desc) {
+    public void Init(string desc, CharSheet _guilty) {
         decription = desc;
-        guilty = CharList.playerCharList;
         Footprint footPrint = GameObject.Instantiate(footprintPrefab).GetComponent<Footprint>();
         footPrint.crime = this;
         footPrint.difficulty = 3;
         footPrint.gameObject.transform.parent = transform;
+        guilty = _guilty;
 
         if (desc == "Во время неудачной охоты вы оставили свидетеля") //надо бы подумать над другой системой индексации
         {
@@ -34,7 +34,7 @@ public class Crime : MonoBehaviour
         }
         else if (desc == "prototype")
         {
-            footPrint.type = Footprint.FootprintType.witness;
+            footPrint.type = Footprint.FootprintType.unknown;
         }
            
         transform.parent = guilty.transform;
