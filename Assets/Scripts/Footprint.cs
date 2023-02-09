@@ -8,6 +8,7 @@ public class Footprint : MonoBehaviour
     public int difficulty;
     public enum FootprintType {witness, camera, weapon, blood, body, unknown}
     public FootprintType type;
+    public List<Evidence> evidences;
 
     public static List<Footprint> footprintsList = new List<Footprint>();
 

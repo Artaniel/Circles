@@ -33,8 +33,9 @@ public class CharSheet : MonoBehaviour
     //public Dictionary<string, int> additions;
 
     public List<Crime> crimeList;
+    public List<Evidence> evidenceList;
 
-    public static CharSheet playerCharSheet = null;
+    public static CharSheet player = null;
     public bool isPlayer = false; 
     public static List<CharSheet> allCharLists = new List<CharSheet>();
 
@@ -46,6 +47,21 @@ public class CharSheet : MonoBehaviour
 
     private void Init() {
         if (isPlayer)
-            playerCharSheet = this;
+            player = this;
+    }
+
+    public List<Footprint> GetAvailableFootprints() {
+        List<Footprint> result = new List<Footprint>();
+        List<Footprint> knownFootprints = new List<Footprint>();
+        foreach (Evidence evidence in evidenceList) {
+            knownFootprints.Add(evidence.footPrint);
+        }
+
+        foreach (Footprint footprint in Footprint.footprintsList) {
+            if (!knownFootprints.Contains(footprint))
+                result.Add(footprint);
+        }
+
+        return result;   
     }
 }
