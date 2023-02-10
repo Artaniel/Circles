@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ResearchPhase : Phase
 {
     //public ChoiseButtonsManager buttonManager;
+    public GameObject evidencePrefab;
 
     override public void PhaseRun()
     {
@@ -20,7 +21,28 @@ public class ResearchPhase : Phase
 
     override protected void InputParcer()
     {
-        maintext.text += "Placeholder";
+        int id = buttonManager.currentButtonPressedId;
+        if (id == 0) //researchRandom
+        {            
+            List<Footprint> availableFootprints = CharSheet.player.GetAvailableForPlayerFootprints();
+            Debug.Log(availableFootprints.Count);
+            if (availableFootprints.Count > 0) {
+                Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count - 1)];
+                Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
+                newEvidence.footPrint = choisenFootPrint;
+                newEvidence.transform.parent = CharSheet.player.transform;
+                CharSheet.player.evidenceList.Add(newEvidence);
+                newEvidence.holder = CharSheet.player;
+                newEvidence.crime = choisenFootPrint.crime;
+                maintext.text += Loc.Get("evidenceFound");
+                maintext.text += newEvidence.crime.guilty.charName + "\n";
+                maintext.text += "difficulty=" + newEvidence.footPrint.difficulty + "\n";
+            }
+        }
+        else
+        {
+            maintext.text += "Placeholder\n";
+        }
         EndPhase();
     }
 }

@@ -203,6 +203,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char4
       objectReference: {fileID: 0}
+    - target: {fileID: 7085173916320293921, guid: c454cd747d0e43b43a73cdd74f6ec125,
+        type: 3}
+      propertyPath: charName
+      value: Name4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -380,6 +385,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char2
       objectReference: {fileID: 0}
+    - target: {fileID: 7085173916320293921, guid: c454cd747d0e43b43a73cdd74f6ec125,
+        type: 3}
+      propertyPath: charName
+      value: Name2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -516,6 +526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Char3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7085173916320293921, guid: c454cd747d0e43b43a73cdd74f6ec125,
+        type: 3}
+      propertyPath: charName
+      value: Name3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -658,6 +673,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char5
       objectReference: {fileID: 0}
+    - target: {fileID: 7085173916320293921, guid: c454cd747d0e43b43a73cdd74f6ec125,
+        type: 3}
+      propertyPath: charName
+      value: Name5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -745,6 +765,7 @@ MonoBehaviour:
   technology: 0
   survival: 0
   crimeList: []
+  evidenceList: []
   isPlayer: 1
 --- !u!1001 &1403034656282686386
 PrefabInstance:
@@ -813,6 +834,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Char1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7085173916320293921, guid: c454cd747d0e43b43a73cdd74f6ec125,
+        type: 3}
+      propertyPath: charName
+      value: Name1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -902,6 +928,12 @@ PrefabInstance:
       propertyPath: buttonManager
       value: 
       objectReference: {fileID: 1205378475}
+    - target: {fileID: 6728129824910064160, guid: 0df49e9ced4f96a43ad8d361270269f3,
+        type: 3}
+      propertyPath: evidencePrefab
+      value: 
+      objectReference: {fileID: 1242749386356202935, guid: 71d42d197c713f34ea70ffc51400d11b,
+        type: 3}
     - target: {fileID: 6728129824910064161, guid: 0df49e9ced4f96a43ad8d361270269f3,
         type: 3}
       propertyPath: maintext

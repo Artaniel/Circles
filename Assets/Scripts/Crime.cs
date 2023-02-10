@@ -7,7 +7,7 @@ public class Crime : MonoBehaviour
     public CharSheet guilty;
     public CharSheet arbitter;
     public List<Evidence> evidences; 
-    public List<Footprint> footprints; 
+    public List<Footprint> footprintsOfThisCrime; 
     public string decription;
 
     public Footprint footprintPrefab;
@@ -38,6 +38,7 @@ public class Crime : MonoBehaviour
         }
            
         transform.parent = guilty.transform;
-        footprints.Add(footPrint);
+        footprintsOfThisCrime.Add(footPrint);
+        Footprint.footprintsList.Add(footPrint);
     }
 }
