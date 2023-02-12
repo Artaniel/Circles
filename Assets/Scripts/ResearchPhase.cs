@@ -23,11 +23,11 @@ public class ResearchPhase : Phase
     {
         int id = buttonManager.currentButtonPressedId;
         if (id == 0) //researchRandom
-        {            
+        {
             List<Footprint> availableFootprints = CharSheet.player.GetAvailableForPlayerFootprints();
             if (availableFootprints.Count > 0)
             {
-                Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count - 1)];
+                Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count)]; // get random from list, needed to be coisen by player later
                 Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
                 newEvidence.footPrint = choisenFootPrint;
                 newEvidence.transform.parent = CharSheet.player.transform;
@@ -43,6 +43,24 @@ public class ResearchPhase : Phase
             }
             else {
                 maintext.text += Loc.Get("noEvidence");
+            }
+        } else if (id == 1) //researchEvidence
+        {
+            if (CharSheet.player.evidenceList.Count > 0)
+            {
+                Evidence evidence = CharSheet.player.evidenceList[Random.Range(0, CharSheet.player.evidenceList.Count)];
+                bool rollIsSucessful = evidence.RollForFirmness(CharSheet.player);
+                if (rollIsSucessful)
+                    maintext.text += Loc.Get("evidenceReserchSucess");
+                else
+                    maintext.text += Loc.Get("evidenceReserchFail");
+
+                maintext.text += evidence.crime.guilty.charName + "\n";
+                maintext.text += "firmness=" + evidence.firmnessOfProof + "\n";
+            }
+            else
+            {
+                maintext.text += Loc.Get("evidenceReserchFail");
             }
         }
         else
