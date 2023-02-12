@@ -81,5 +81,6 @@ public class Loc : MonoBehaviour
         RUlocale.Add("introduction", "Вы вампир. Вот. Шпионьте, шантажируйте, боритесь за власть и все такое прочее. Да, я ищу наративщика. \n");//переписать
 
         RUlocale.Add("evidenceFound", "Была обнаружена улика\n");//переписать
+        RUlocale.Add("noEvidence", "Ничего не найдено, возможно нечего искать\n");        
     }
 }

@@ -9,5 +9,12 @@ public class Evidence : MonoBehaviour
     public CharSheet holder;
     public bool isTypeKnown;
     public bool isCriminalKnown;
-    public float firmnessOfProof; //0..100
+    public float firmnessOfProof = 0; //0..100
+
+    public bool RollForFirmness(CharSheet owner) {
+        int sucesses = RollManager.Roll(owner.Per + owner.investigation);
+        firmnessOfProof += 10 * sucesses;
+        firmnessOfProof = Mathf.Clamp(firmnessOfProof, 0, 100);
+        return sucesses > 0;
+    }
 }

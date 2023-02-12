@@ -25,8 +25,8 @@ public class ResearchPhase : Phase
         if (id == 0) //researchRandom
         {            
             List<Footprint> availableFootprints = CharSheet.player.GetAvailableForPlayerFootprints();
-            Debug.Log(availableFootprints.Count);
-            if (availableFootprints.Count > 0) {
+            if (availableFootprints.Count > 0)
+            {
                 Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count - 1)];
                 Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
                 newEvidence.footPrint = choisenFootPrint;
@@ -34,9 +34,15 @@ public class ResearchPhase : Phase
                 CharSheet.player.evidenceList.Add(newEvidence);
                 newEvidence.holder = CharSheet.player;
                 newEvidence.crime = choisenFootPrint.crime;
+
+                newEvidence.RollForFirmness(newEvidence.holder);
+
                 maintext.text += Loc.Get("evidenceFound");
                 maintext.text += newEvidence.crime.guilty.charName + "\n";
-                maintext.text += "difficulty=" + newEvidence.footPrint.difficulty + "\n";
+                maintext.text += "firmness=" + newEvidence.firmnessOfProof + "\n";
+            }
+            else {
+                maintext.text += Loc.Get("noEvidence");
             }
         }
         else
