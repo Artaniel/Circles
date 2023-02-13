@@ -748,7 +748,7 @@ MonoBehaviour:
   Man: 0
   Com: 0
   Int: 0
-  Per: 0
+  Per: 5
   Res: 0
   athletics: 0
   stealth: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
   subterfuge: 0
   academics: 0
   awareness: 0
-  investigation: 0
+  investigation: 5
   technology: 0
   survival: 0
   crimeList: []

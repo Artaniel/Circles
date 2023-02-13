@@ -38,6 +38,7 @@ public class Crime : MonoBehaviour
         }
            
         transform.parent = guilty.transform;
+        guilty.crimeList.Add(this);
         footprintsOfThisCrime.Add(footPrint);
         Footprint.footprintsList.Add(footPrint);
     }

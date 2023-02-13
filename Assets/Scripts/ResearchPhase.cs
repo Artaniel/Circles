@@ -41,10 +41,12 @@ public class ResearchPhase : Phase
                 maintext.text += newEvidence.crime.guilty.charName + "\n";
                 maintext.text += "firmness=" + newEvidence.firmnessOfProof + "\n";
             }
-            else {
+            else
+            {
                 maintext.text += Loc.Get("noEvidence");
             }
-        } else if (id == 1) //researchEvidence
+        }
+        else if (id == 1) //researchEvidence
         {
             if (CharSheet.player.evidenceList.Count > 0)
             {
@@ -62,6 +64,31 @@ public class ResearchPhase : Phase
             {
                 maintext.text += Loc.Get("evidenceReserchFail");
             }
+        }
+        else if (id == 3) //researchSelf
+        {
+            List<Footprint> availableFootprints = new List<Footprint>();
+            foreach (Crime crime in CharSheet.player.crimeList)
+                foreach (Footprint footprint in crime.footprintsOfThisCrime)
+                    if (footprint.difficulty < 10)
+                        availableFootprints.Add(footprint);
+            Debug.Log(CharSheet.player.crimeList);
+            Debug.Log(CharSheet.player.crimeList[0].footprintsOfThisCrime.Count);
+            Debug.Log(CharSheet.player.crimeList[0].footprintsOfThisCrime[0]);
+
+            Debug.Log(availableFootprints.Count);
+            if (availableFootprints.Count > 0) {
+                Footprint choisenFootprint = availableFootprints[Random.Range(0, availableFootprints.Count)];
+                //надо както придумать выбор скиллов в зависимости от типа футпринта. Пока пусть будет Cha+intimidation
+                maintext.text += "was " + choisenFootprint.difficulty + "\n";
+                choisenFootprint.difficulty += RollManager.Roll(CharSheet.player.Cha + CharSheet.player.intimidation);
+                maintext.text += "now " + choisenFootprint.difficulty + "\n";
+            }
+            else
+            {
+                maintext.text += Loc.Get("evidenceReserchFail");
+            }
+
         }
         else
         {
