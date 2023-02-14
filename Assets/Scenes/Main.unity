@@ -740,30 +740,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charName: Me
-  race: 
-  Str: 0
-  Dex: 0
-  Sta: 0
-  Cha: 0
-  Man: 0
-  Com: 0
-  Int: 0
-  Per: 5
-  Res: 0
-  athletics: 0
-  stealth: 0
-  brawl: 0
-  firearms: 0
-  intimidation: 0
-  leadership: 0
-  persuasion: 0
-  streetwise: 0
-  subterfuge: 0
-  academics: 0
-  awareness: 0
-  investigation: 5
-  technology: 0
-  survival: 0
+  race: V
+  Str: 2
+  Dex: 2
+  Sta: 2
+  Cha: 2
+  Man: 2
+  Com: 2
+  Int: 2
+  Per: 2
+  Res: 2
+  athletics: 2
+  stealth: 2
+  brawl: 2
+  firearms: 2
+  intimidation: 2
+  leadership: 2
+  persuasion: 2
+  streetwise: 2
+  subterfuge: 2
+  academics: 2
+  awareness: 2
+  investigation: 2
+  technology: 2
+  survival: 2
   crimeList: []
   evidenceList: []
   isPlayer: 1
@@ -1021,6 +1021,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 502745945, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 502745945, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 502745945, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 502745945, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 502745945, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 502745945, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 524773984, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1048,6 +1072,14 @@ PrefabInstance:
     - target: {fileID: 795641931, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_text
       value: Button3
+      objectReference: {fileID: 0}
+    - target: {fileID: 795641931, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 795641931, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 795641931, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_textAlignment
@@ -1118,6 +1150,14 @@ PrefabInstance:
       value: Button2
       objectReference: {fileID: 0}
     - target: {fileID: 1165593650, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165593650, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165593650, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
@@ -1179,7 +1219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1205378476, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_CellSize.y
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1205378476, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_ChildAlignment
@@ -1188,6 +1228,14 @@ PrefabInstance:
     - target: {fileID: 1339477621, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_text
       value: Button5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339477621, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339477621, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1339477621, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_textAlignment
@@ -1234,6 +1282,14 @@ PrefabInstance:
       value: Button4
       objectReference: {fileID: 0}
     - target: {fileID: 1778309123, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778309123, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778309123, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
@@ -1252,6 +1308,14 @@ PrefabInstance:
     - target: {fileID: 2075940617, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_text
       value: Button1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075940617, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075940617, guid: 26a293a19b703184d815388c832a9fce, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2075940617, guid: 26a293a19b703184d815388c832a9fce, type: 3}
       propertyPath: m_textAlignment

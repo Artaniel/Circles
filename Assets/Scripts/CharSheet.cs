@@ -34,6 +34,7 @@ public class CharSheet : MonoBehaviour
 
     public List<Crime> crimeList;
     public List<Evidence> evidenceList;
+    public Dictionary<CharSheet, float> relations;
 
     public static CharSheet player = null;
     public bool isPlayer = false; 
@@ -43,6 +44,17 @@ public class CharSheet : MonoBehaviour
     {
         Init();
         allCharLists.Add(this);
+    }
+
+    private void Start()
+    {
+        relations = new Dictionary<CharSheet, float>();
+        foreach (CharSheet charSheet in allCharLists)
+        {
+            if (charSheet != this) {
+                relations.Add(charSheet, 0);
+            }
+        }
     }
 
     private void Init() {
