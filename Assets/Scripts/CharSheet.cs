@@ -35,6 +35,7 @@ public class CharSheet : MonoBehaviour
     public List<Crime> crimeList;
     public List<Evidence> evidenceList;
     public Dictionary<CharSheet, float> relations;
+    public Dictionary<CharSheet, float> threat;
 
     public static CharSheet player = null;
     public bool isPlayer = false; 
@@ -51,8 +52,17 @@ public class CharSheet : MonoBehaviour
         relations = new Dictionary<CharSheet, float>();
         foreach (CharSheet charSheet in allCharLists)
         {
-            if (charSheet != this) {
+            if (charSheet != this)
+            {
                 relations.Add(charSheet, 0);
+            }
+        }
+        threat = new Dictionary<CharSheet, float>();
+        foreach (CharSheet charSheet in allCharLists)
+        {
+            if (charSheet != this)
+            {
+                threat.Add(charSheet, 0);
             }
         }
     }
@@ -78,5 +88,16 @@ public class CharSheet : MonoBehaviour
         Debug.Log(result.Count);
 
         return result;   
+    }
+
+    public void ChangeRelationsToMe(CharSheet subject, float ammount) {
+        subject.relations[this] += ammount;
+        Mathf.Clamp(subject.relations[this], -100f, 100f);
+    }
+
+    public void ChangeThreatToMe(CharSheet subject, float ammount)
+    {
+        subject.relations[this] += ammount;
+        Mathf.Clamp(subject.threat[this], -100f, 100f);
     }
 }
