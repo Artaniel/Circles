@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomEventPhase : MonoBehaviour
+public class RandomEventPhase : Phase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    override public void PhaseRun() {
+        // id list
+        // 0 - add random relation
+        // 1 - substract random relation
+
+        int id = Random.Range(0, 1);
+        if (id == 0) ChangeRandomRelation(10);
+        else if (id == 1) ChangeRandomRelation(-10);
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void ChangeRandomRelation(float value) { 
+    }
+
+    override protected void InputParcer() { 
+
     }
 }
