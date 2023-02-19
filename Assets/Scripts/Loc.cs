@@ -85,6 +85,12 @@ public class Loc : MonoBehaviour
         RUlocale.Add("evidenceReserchSucess", "Расследование улучшило улику\n");
         RUlocale.Add("evidenceReserchFail", "Расследование провалилось\n");
 
+        RUlocale.Add("negotiationsImproveRelations", "Улучшить отношение");
+        RUlocale.Add("negotiationsScare", "Напугать");
+        RUlocale.Add("negotiationsBlackmail", "Начать шантаж");
+        RUlocale.Add("negotiationsPublishEvidence", "Начать шантаж");
+        RUlocale.Add("negotiationsPressure", "Напомнить о долге");
+        RUlocale.Add("negotiationsRelifPressure", "Снять давление с себя");
 
     }
 }
