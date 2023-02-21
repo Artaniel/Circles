@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Crime : MonoBehaviour
 {
-    public CharSheet guilty;
-    public CharSheet arbitter;
+    public Character guilty;
+    public Character arbitter;
     public List<Evidence> evidences; 
     public List<Footprint> footprintsOfThisCrime; 
     public string decription;
 
     public Footprint footprintPrefab;
 
-    public void Init(string desc, CharSheet _guilty) {
+    public void Init(string desc, Character _guilty) {
         decription = desc;
         Footprint footPrint = GameObject.Instantiate(footprintPrefab).GetComponent<Footprint>();
         footPrint.crime = this;

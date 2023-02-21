@@ -25,23 +25,23 @@ public class RandomEventPhase : Phase
     }
 
     private void ChangeRandomRelation(float ammount) {
-        List<CharSheet> charSheets = CharSheet.allCharLists;
-        charSheets.Remove(CharSheet.player);
-        CharSheet target = charSheets[Random.Range(0, charSheets.Count)];
-        CharSheet.player.ChangeRelationsToMe(target, ammount);
+        List<Character> charSheets = Character.allCharLists;
+        charSheets.Remove(Character.player);
+        Character target = charSheets[Random.Range(0, charSheets.Count)];
+        Character.player.ChangeRelationsToMe(target, ammount);
         maintext.text += $"Changed relations with {target.name} for {ammount}\n";
     }
 
     private void GetRandomEvidence() {
-        List<Footprint> availableFootprints = CharSheet.player.GetAvailableForPlayerFootprints();
+        List<Footprint> availableFootprints = Character.player.GetAvailableForPlayerFootprints();
         if (availableFootprints.Count > 0)
         {
             Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count)]; // get random from list, needed to be coisen by player later
             Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
             newEvidence.footPrint = choisenFootPrint;
-            newEvidence.transform.parent = CharSheet.player.transform;
-            CharSheet.player.evidenceList.Add(newEvidence);
-            newEvidence.holder = CharSheet.player;
+            newEvidence.transform.parent = Character.player.transform;
+            Character.player.evidenceList.Add(newEvidence);
+            newEvidence.holder = Character.player;
             newEvidence.crime = choisenFootPrint.crime;
 
             newEvidence.firmnessOfProof = 10f;

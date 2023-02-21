@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharSheet : MonoBehaviour
+public class Character : MonoBehaviour
 {
     public string charName;
     public string race;
+    public string clan; // replace with Enum
     public int Str;
     public int Dex;
     public int Sta;
@@ -34,12 +35,12 @@ public class CharSheet : MonoBehaviour
 
     public List<Crime> crimeList;
     public List<Evidence> evidenceList;
-    public Dictionary<CharSheet, float> relations;
-    public Dictionary<CharSheet, float> threat;
+    public Dictionary<Character, float> relations;
+    public Dictionary<Character, float> threat;
 
-    public static CharSheet player = null;
+    public static Character player = null;
     public bool isPlayer = false; 
-    public static List<CharSheet> allCharLists = new List<CharSheet>();
+    public static List<Character> allCharLists = new List<Character>();
 
     private void Awake()
     {
@@ -49,16 +50,16 @@ public class CharSheet : MonoBehaviour
 
     private void Start()
     {
-        relations = new Dictionary<CharSheet, float>();
-        foreach (CharSheet charSheet in allCharLists)
+        relations = new Dictionary<Character, float>();
+        foreach (Character charSheet in allCharLists)
         {
             if (charSheet != this)
             {
                 relations.Add(charSheet, 0);
             }
         }
-        threat = new Dictionary<CharSheet, float>();
-        foreach (CharSheet charSheet in allCharLists)
+        threat = new Dictionary<Character, float>();
+        foreach (Character charSheet in allCharLists)
         {
             if (charSheet != this)
             {
@@ -90,12 +91,12 @@ public class CharSheet : MonoBehaviour
         return result;   
     }
 
-    public void ChangeRelationsToMe(CharSheet subject, float ammount) {
+    public void ChangeRelationsToMe(Character subject, float ammount) {
         subject.relations[this] += ammount;
         Mathf.Clamp(subject.relations[this], -100f, 100f);
     }
 
-    public void ChangeThreatToMe(CharSheet subject, float ammount)
+    public void ChangeThreatToMe(Character subject, float ammount)
     {
         subject.relations[this] += ammount;
         Mathf.Clamp(subject.threat[this], -100f, 100f);

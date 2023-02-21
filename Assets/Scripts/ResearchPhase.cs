@@ -24,15 +24,15 @@ public class ResearchPhase : Phase
         int id = buttonManager.currentButtonPressedId;
         if (id == 0) //researchRandom
         {
-            List<Footprint> availableFootprints = CharSheet.player.GetAvailableForPlayerFootprints();
+            List<Footprint> availableFootprints = Character.player.GetAvailableForPlayerFootprints();
             if (availableFootprints.Count > 0)
             {
                 Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count)]; // get random from list, needed to be coisen by player later
                 Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
                 newEvidence.footPrint = choisenFootPrint;
-                newEvidence.transform.parent = CharSheet.player.transform;
-                CharSheet.player.evidenceList.Add(newEvidence);
-                newEvidence.holder = CharSheet.player;
+                newEvidence.transform.parent = Character.player.transform;
+                Character.player.evidenceList.Add(newEvidence);
+                newEvidence.holder = Character.player;
                 newEvidence.crime = choisenFootPrint.crime;
 
                 newEvidence.RollForFirmness(newEvidence.holder);
@@ -48,10 +48,10 @@ public class ResearchPhase : Phase
         }
         else if (id == 1) //researchEvidence
         {
-            if (CharSheet.player.evidenceList.Count > 0)
+            if (Character.player.evidenceList.Count > 0)
             {
-                Evidence evidence = CharSheet.player.evidenceList[Random.Range(0, CharSheet.player.evidenceList.Count)];
-                bool rollIsSucessful = evidence.RollForFirmness(CharSheet.player);
+                Evidence evidence = Character.player.evidenceList[Random.Range(0, Character.player.evidenceList.Count)];
+                bool rollIsSucessful = evidence.RollForFirmness(Character.player);
                 if (rollIsSucessful)
                     maintext.text += Loc.Get("evidenceReserchSucess");
                 else
@@ -68,20 +68,20 @@ public class ResearchPhase : Phase
         else if (id == 3) //researchSelf
         {
             List<Footprint> availableFootprints = new List<Footprint>();
-            foreach (Crime crime in CharSheet.player.crimeList)
+            foreach (Crime crime in Character.player.crimeList)
                 foreach (Footprint footprint in crime.footprintsOfThisCrime)
                     if (footprint.difficulty < 10)
                         availableFootprints.Add(footprint);
-            Debug.Log(CharSheet.player.crimeList);
-            Debug.Log(CharSheet.player.crimeList[0].footprintsOfThisCrime.Count);
-            Debug.Log(CharSheet.player.crimeList[0].footprintsOfThisCrime[0]);
+            Debug.Log(Character.player.crimeList);
+            Debug.Log(Character.player.crimeList[0].footprintsOfThisCrime.Count);
+            Debug.Log(Character.player.crimeList[0].footprintsOfThisCrime[0]);
 
             Debug.Log(availableFootprints.Count);
             if (availableFootprints.Count > 0) {
                 Footprint choisenFootprint = availableFootprints[Random.Range(0, availableFootprints.Count)];
                 //надо както придумать выбор скиллов в зависимости от типа футпринта. Пока пусть будет Cha+intimidation
                 maintext.text += "was " + choisenFootprint.difficulty + "\n";
-                choisenFootprint.difficulty += RollManager.Roll(CharSheet.player.Cha + CharSheet.player.intimidation);
+                choisenFootprint.difficulty += RollManager.Roll(Character.player.Cha + Character.player.intimidation);
                 maintext.text += "now " + choisenFootprint.difficulty + "\n";
             }
             else

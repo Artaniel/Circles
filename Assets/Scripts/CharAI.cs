@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CharAI : MonoBehaviour
 {
-    public CharSheet charSheet;
+    public Character charSheet;
     public GameObject crimePrefab;    
 
     private void Awake()
     {
-        if (!charSheet) charSheet = GetComponent<CharSheet>();
+        if (!charSheet) charSheet = GetComponent<Character>();
         if (!charSheet) Debug.LogWarning($"No charlist on {gameObject.name}");
     }
 
