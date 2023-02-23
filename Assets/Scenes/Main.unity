@@ -2093,7 +2093,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 120, y: 40}
+  m_CellSize: {x: 165, y: 40}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 3
@@ -4546,6 +4546,56 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Cha
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Com
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Int
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Man
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Per
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Res
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Sta
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: Str
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: clan
+      value: Ventrue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710285470213345946, guid: 855126fef8e05474a96cbd31730e8377,
+        type: 3}
+      propertyPath: race
+      value: Vampire
+      objectReference: {fileID: 0}
     - target: {fileID: 6710285470213345947, guid: 855126fef8e05474a96cbd31730e8377,
         type: 3}
       propertyPath: m_RootOrder
@@ -5395,9 +5445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d4cdfa8669c6442ac67a3b2abfff58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 1727421756}
-  Race: {fileID: 764936299}
-  Clan: {fileID: 1925123336}
+  charName: {fileID: 1727421756}
+  charRace: {fileID: 764936299}
+  charClan: {fileID: 1925123336}
   Str: {fileID: 1543336220}
   Dex: {fileID: 942966563}
   Sta: {fileID: 903310563}

@@ -34,7 +34,7 @@ public class Loc : MonoBehaviour
             else
                 Debug.Log("Error, no translation, RU " + key);
         }
-        return "";
+        return key;
     }
 
     static public void Init() {
