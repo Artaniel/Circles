@@ -36,6 +36,10 @@ public class CharSheetUI : MonoBehaviour
     public TextMeshProUGUI technology;
     public TextMeshProUGUI survival;
 
+    public GameObject relationsPanel;
+    public GameObject relationsRecordPrefab;
+
+
     private void Awake()
     {
         if (!instance)
@@ -79,6 +83,20 @@ public class CharSheetUI : MonoBehaviour
         investigation.text = $"{Loc.Get("investigation")} {character.investigation}";
         technology.text = $"{Loc.Get("technology")} {character.technology}";
         survival.text = $"{Loc.Get("survival")} {character.survival}";
+        RelationsRender(character);
+    }
+
+    private void RelationsRender(Character thisCharacter) {
+        List<Character> anotherChars = Character.allCharLists;
+        anotherChars.Remove(thisCharacter);
+
+        GameObject relationsRecord;
+        foreach (Character anoterChar in anotherChars)
+        {
+            relationsRecord = Instantiate(relationsRecordPrefab);
+            relationsRecord.transform.SetParent(relationsPanel.transform);
+            relationsRecord.GetComponent<TextMeshProUGUI>().text = $"{anoterChar.charName} {thisCharacter.relations[anoterChar]} {thisCharacter.threat[anoterChar]}";
+        }
     }
 
 }
