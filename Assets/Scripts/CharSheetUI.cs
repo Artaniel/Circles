@@ -39,13 +39,12 @@ public class CharSheetUI : MonoBehaviour
     public GameObject relationsPanel;
     public GameObject relationsRecordPrefab;
 
-
     private void Awake()
     {
         if (!instance)
             instance = this;
         else
-            Destroy(gameObject);        
+            Destroy(gameObject);
     }
 
     private void Start()
@@ -69,20 +68,20 @@ public class CharSheetUI : MonoBehaviour
         Per.text = $"{Loc.Get("Perception")}  {character.Per}";
         Res.text = $"{Loc.Get("Resolve")}      {character.Res}";
 
-        athletics.text = $"{Loc.Get("athletics")} {character.athletics}";
-        stealth.text = $"{Loc.Get("stealth")} {character.stealth}";
-        brawl.text = $"{Loc.Get("brawl")} {character.brawl}";
-        firearms.text = $"{Loc.Get("firearms")} {character.firearms}";
+        athletics.text =    $"{Loc.Get("athletics")} {character.athletics}";
+        stealth.text =      $"{Loc.Get("stealth")} {character.stealth}";
+        brawl.text =        $"{Loc.Get("brawl")} {character.brawl}";
+        firearms.text =     $"{Loc.Get("firearms")} {character.firearms}";
         intimidation.text = $"{Loc.Get("intimidation")} {character.intimidation}";
-        leadership.text = $"{Loc.Get("leadership")} {character.leadership}";
-        persuasion.text = $"{Loc.Get("persuasion")} {character.persuasion}";
-        streetwise.text = $"{Loc.Get("streetwise")} {character.streetwise}";
-        subterfuge.text = $"{Loc.Get("subterfuge")} {character.subterfuge}";
-        academics.text = $"{Loc.Get("academics")} {character.academics}";
-        awareness.text = $"{Loc.Get("awareness")} {character.awareness}";
+        leadership.text =   $"{Loc.Get("leadership")} {character.leadership}";
+        persuasion.text =   $"{Loc.Get("persuasion")} {character.persuasion}";
+        streetwise.text =   $"{Loc.Get("streetwise")} {character.streetwise}";
+        subterfuge.text =   $"{Loc.Get("subterfuge")} {character.subterfuge}";
+        academics.text =    $"{Loc.Get("academics")} {character.academics}";
+        awareness.text =    $"{Loc.Get("awareness")} {character.awareness}";
         investigation.text = $"{Loc.Get("investigation")} {character.investigation}";
-        technology.text = $"{Loc.Get("technology")} {character.technology}";
-        survival.text = $"{Loc.Get("survival")} {character.survival}";
+        technology.text =   $"{Loc.Get("technology")} {character.technology}";
+        survival.text =     $"{Loc.Get("survival")} {character.survival}";
         RelationsRender(character);
     }
 
@@ -90,6 +89,9 @@ public class CharSheetUI : MonoBehaviour
         List<Character> anotherChars = Character.allCharLists;
         anotherChars.Remove(thisCharacter);
 
+        while (transform.childCount > 0) { // clear old list
+            Destroy(transform.GetChild(0));
+        }
         GameObject relationsRecord;
         foreach (Character anoterChar in anotherChars)
         {
@@ -97,6 +99,15 @@ public class CharSheetUI : MonoBehaviour
             relationsRecord.transform.SetParent(relationsPanel.transform);
             relationsRecord.GetComponent<TextMeshProUGUI>().text = $"{anoterChar.charName} {thisCharacter.relations[anoterChar]} {thisCharacter.threat[anoterChar]}";
         }
+    }
+
+    public void CloseButton() {
+        gameObject.SetActive(false);
+    }
+
+    public void OpenPlayerCharsheet() {
+        gameObject.SetActive(true);
+        RenderCharSheet(Character.player);
     }
 
 }
