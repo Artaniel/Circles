@@ -49,7 +49,7 @@ public class CharSheetUI : MonoBehaviour
 
     private void Start()
     {   //test only
-        RenderCharSheet(Character.player);
+        //RenderCharSheet(Character.player);
     }
 
     public void RenderCharSheet(Character character)
@@ -105,9 +105,8 @@ public class CharSheetUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void OpenPlayerCharsheet() {
-        gameObject.SetActive(true);
-        RenderCharSheet(Character.player);
+    public void Init() {
+        instance.RenderCharSheet(Character.player);
     }
 
 }
