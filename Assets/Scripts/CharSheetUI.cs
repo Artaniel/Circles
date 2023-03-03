@@ -38,6 +38,7 @@ public class CharSheetUI : MonoBehaviour
 
     public GameObject relationsPanel;
     public GameObject relationsRecordPrefab;
+    public List<GameObject> RelationsUIList;
 
     private void Awake()
     {
@@ -89,15 +90,22 @@ public class CharSheetUI : MonoBehaviour
         List<Character> anotherChars = Character.allCharLists;
         anotherChars.Remove(thisCharacter);
 
-        while (transform.childCount > 0) { // clear old list
-            Destroy(transform.GetChild(0));
+
+
+        while (RelationsUIList.Count > 0) { // clear old list
+            {
+                Destroy(RelationsUIList[0]);
+                Debug.Log(RelationsUIList[0]);
+                RelationsUIList.Remove(RelationsUIList[0]);
+            }
         }
         GameObject relationsRecord;
         foreach (Character anoterChar in anotherChars)
-        {
+        {            
             relationsRecord = Instantiate(relationsRecordPrefab);
             relationsRecord.transform.SetParent(relationsPanel.transform);
             relationsRecord.GetComponent<TextMeshProUGUI>().text = $"{anoterChar.charName} {thisCharacter.relations[anoterChar]} {thisCharacter.threat[anoterChar]}";
+            RelationsUIList.Add(relationsRecord);
         }
     }
 
@@ -106,7 +114,7 @@ public class CharSheetUI : MonoBehaviour
     }
 
     public void Init() {
-        instance.RenderCharSheet(Character.player);
+        RenderCharSheet(Character.player);
     }
 
 }
