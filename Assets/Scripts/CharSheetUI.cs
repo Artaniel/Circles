@@ -44,6 +44,10 @@ public class CharSheetUI : MonoBehaviour
     public GameObject evidenceRecordPrefab;
     public List<GameObject> evidencesUIList;
 
+    public GameObject crimesPanel;
+    public GameObject crimeRecordPrefab;
+    public List<GameObject> crimeUIList;
+
     private void Awake()
     {
         if (!instance)
@@ -89,18 +93,13 @@ public class CharSheetUI : MonoBehaviour
         survival.text =     $"{Loc.Get("survival")} {character.survival}";
         RelationsRender(character);
         EvidencesRender(character);
+        CrimesRender(character);
     }
 
     private void RelationsRender(Character thisCharacter) {
         List<Character> anotherChars = Character.allCharLists;
         anotherChars.Remove(thisCharacter);
-
-        while (relationsUIList.Count > 0) { // clear old list
-            {
-                Destroy(relationsUIList[0]);
-                relationsUIList.Remove(relationsUIList[0]);
-            }
-        }
+        ClearList(relationsUIList);
         GameObject relationsRecord;
         foreach (Character anoterChar in anotherChars)
         {            
@@ -113,11 +112,7 @@ public class CharSheetUI : MonoBehaviour
 
     private void EvidencesRender(Character character)
     {
-        while (evidencesUIList.Count > 0)
-        { // clear old list        
-            Destroy(evidencesUIList[0]);
-            evidencesUIList.Remove(evidencesUIList[0]);
-        }
+        ClearList(evidencesUIList);
         GameObject evidenceRecord;
         foreach (Evidence evidence in character.evidenceList)
         {
@@ -125,6 +120,27 @@ public class CharSheetUI : MonoBehaviour
             evidenceRecord.transform.SetParent(evidencesPanel.transform);
             evidenceRecord.GetComponent<TextMeshProUGUI>().text = $"{evidence.crime.guilty.charName} {evidence.firmnessOfProof}"; // need to find something to define it
             evidencesUIList.Add(evidenceRecord);
+        }
+    }
+
+    private void CrimesRender(Character character)
+    {
+        ClearList(crimeUIList);
+        GameObject crimeRecord;
+        foreach (Crime crime in character.crimeList)
+        {
+            crimeRecord = Instantiate(crimeRecordPrefab);
+            crimeRecord.transform.SetParent(crimesPanel.transform);
+            crimeRecord.GetComponent<TextMeshProUGUI>().text = $"{crime.decription}";
+            crimeUIList.Add(crimeRecord);
+        }
+    }
+
+    private void ClearList(List<GameObject> list) {
+        while (list.Count > 0)
+        {        
+            Destroy(list[0]);
+            list.Remove(list[0]);
         }
     }
 
