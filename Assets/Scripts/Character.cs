@@ -37,6 +37,7 @@ public class Character : MonoBehaviour
     public List<Evidence> evidenceList;
     public Dictionary<Character, float> relations;
     public Dictionary<Character, float> threat;
+    public Dictionary<Character, float> pressure;
 
     public static Character player = null;
     public bool isPlayer = false; 
@@ -100,5 +101,9 @@ public class Character : MonoBehaviour
     {
         subject.relations[this] += ammount;
         Mathf.Clamp(subject.threat[this], -100f, 100f);
+    }
+
+    public float GetPresureBalance(Character target) {
+        return pressure[target] - target.pressure[this];
     }
 }
