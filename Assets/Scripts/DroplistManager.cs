@@ -9,6 +9,7 @@ public class DroplistManager : MonoBehaviour
     public GameObject[] buttons;
     public Character[] buttonSortedCharacters;
     public enum DroplistType {anotherCharacters, myCrimes, myEvidences}
+    public DroplistType droplistType;
     public GameObject buttonPrefab;
 
     public void CloseDroplist() 
@@ -24,6 +25,7 @@ public class DroplistManager : MonoBehaviour
     public void Init(DroplistType type)
     {
         OpenDroplist();
+        droplistType = type;
         if (type == DroplistType.anotherCharacters) {
             List<Character> anotherChars = Character.allCharLists;
             anotherChars.Remove(Character.player);
@@ -39,8 +41,17 @@ public class DroplistManager : MonoBehaviour
         }
     }
 
-    public void OnButtonPress() { 
-    
-    }
+    public void OnButtonPress(GameObject choisenButton)
+    {
+        int i = 0;
+        while (i <= buttons.Length && buttons[i] != choisenButton)
+        {
+            i++;
+        }
 
+        if (droplistType == DroplistType.anotherCharacters)
+        {
+
+        }
+    }
 }
