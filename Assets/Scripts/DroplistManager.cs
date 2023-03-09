@@ -8,9 +8,20 @@ public class DroplistManager : MonoBehaviour
     public GameObject droplistPanel;
     public GameObject[] buttons;
     public Character[] buttonSortedCharacters;
-    public enum DroplistType {anotherCharacters, myCrimes, myEvidences}
+    public enum DroplistType { anotherCharacters, myCrimes, myEvidences }
     public DroplistType droplistType;
+    public enum ReturnDirrectionType { reserchPhase }
+    public ReturnDirrectionType returnDirrection;
+
     public GameObject buttonPrefab;
+
+    public static DroplistManager instance;
+
+    private void Awake()
+    {
+        if (!instance)
+            instance = this;
+    }
 
     public void CloseDroplist() 
     {
@@ -22,11 +33,12 @@ public class DroplistManager : MonoBehaviour
         droplistPanel.SetActive(true);
     }
 
-    public void Init(DroplistType type)
+    public void Init(DroplistType _type, ReturnDirrectionType _returnDirection)
     {
         OpenDroplist();
-        droplistType = type;
-        if (type == DroplistType.anotherCharacters) {
+        droplistType = _type;
+        returnDirrection = _returnDirection;
+        if (_type == DroplistType.anotherCharacters) {
             List<Character> anotherChars = Character.allCharLists;
             anotherChars.Remove(Character.player);
             buttons = new GameObject[anotherChars.Count - 1];
@@ -41,17 +53,16 @@ public class DroplistManager : MonoBehaviour
         }
     }
 
-    public void OnButtonPress(GameObject choisenButton)
+    public static void OnButtonPress(GameObject choisenButton)
     {
         int i = 0;
-        while (i <= buttons.Length && buttons[i] != choisenButton)
+        while (i <= instance.buttons.Length && instance.buttons[i] != choisenButton)
         {
             i++;
         }
-
-        if (droplistType == DroplistType.anotherCharacters)
+        if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrectionType.reserchPhase)
         {
-
+            GameObject.FindWithTag("PhaseController").GetComponent<ResearchPhase>().CharacterChoisen(instance.buttonSortedCharacters[i]);
         }
     }
 }

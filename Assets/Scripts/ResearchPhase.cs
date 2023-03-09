@@ -45,6 +45,7 @@ public class ResearchPhase : Phase
             {
                 maintext.text += Loc.Get("noEvidence");
             }
+            EndPhase();
         }
         else if (id == 1) //researchEvidence
         {
@@ -64,6 +65,11 @@ public class ResearchPhase : Phase
             {
                 maintext.text += Loc.Get("evidenceReserchFail");
             }
+            EndPhase();
+        }
+        else if (id == 2) { //researchChar
+            buttonManager.Wipe();
+            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrectionType.reserchPhase);
         }
         else if (id == 3) //researchSelf
         {
@@ -77,7 +83,8 @@ public class ResearchPhase : Phase
             Debug.Log(Character.player.crimeList[0].footprintsOfThisCrime[0]);
 
             Debug.Log(availableFootprints.Count);
-            if (availableFootprints.Count > 0) {
+            if (availableFootprints.Count > 0)
+            {
                 Footprint choisenFootprint = availableFootprints[Random.Range(0, availableFootprints.Count)];
                 //надо както придумать выбор скиллов в зависимости от типа футпринта. Пока пусть будет Cha+intimidation
                 maintext.text += "was " + choisenFootprint.difficulty + "\n";
@@ -88,12 +95,17 @@ public class ResearchPhase : Phase
             {
                 maintext.text += Loc.Get("evidenceReserchFail");
             }
+            EndPhase();
 
         }
         else
         {
-            maintext.text += "Placeholder\n";
+            maintext.text += "Placeholder\n"; 
+            EndPhase();
         }
-        EndPhase();
+    }
+
+    public void CharacterChoisen(Character character) {
+        Debug.Log($"Coisen char name {character.charName}");
     }
 }
