@@ -10,8 +10,8 @@ public class DroplistManager : MonoBehaviour
     public Character[] buttonSortedCharacters;
     public enum DroplistType { anotherCharacters, myCrimes, myEvidences }
     public DroplistType droplistType;
-    public enum ReturnDirrectionType { reserchPhase }
-    public ReturnDirrectionType returnDirrection;
+    public enum ReturnDirrection { reserchPhase }
+    public ReturnDirrection returnDirrection;
 
     public GameObject buttonPrefab;
 
@@ -23,7 +23,7 @@ public class DroplistManager : MonoBehaviour
             instance = this;
     }
 
-    public void CloseDroplist() 
+    public void CloseDroplist()
     {
         droplistPanel.SetActive(false);
     }
@@ -33,22 +33,30 @@ public class DroplistManager : MonoBehaviour
         droplistPanel.SetActive(true);
     }
 
-    public void Init(DroplistType _type, ReturnDirrectionType _returnDirection)
+    public void ClearList() {
+        foreach (GameObject button in buttons) 
+            Destroy(button);
+    }
+
+    public void Init(DroplistType _type, ReturnDirrection _returnDirection)
     {
         OpenDroplist();
+        ClearList();
         droplistType = _type;
         returnDirrection = _returnDirection;
         if (_type == DroplistType.anotherCharacters) {
             List<Character> anotherChars = Character.allCharLists;
             anotherChars.Remove(Character.player);
-            buttons = new GameObject[anotherChars.Count - 1];
-            buttonSortedCharacters = new Character[anotherChars.Count - 1];
+            buttons = new GameObject[anotherChars.Count];
+            buttonSortedCharacters = new Character[anotherChars.Count];
             int i = 0;
             foreach (Character character in anotherChars) {
                 buttonSortedCharacters[i] = character;
                 buttons[i] = Instantiate(buttonPrefab);
-                buttons[i].transform.parent = transform;
+                buttons[i].transform.SetParent(transform);
                 buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = character.charName;
+                buttons[i].SetActive(true);
+                i++;
             }
         }
     }
@@ -56,11 +64,12 @@ public class DroplistManager : MonoBehaviour
     public static void OnButtonPress(GameObject choisenButton)
     {
         int i = 0;
-        while (i <= instance.buttons.Length && instance.buttons[i] != choisenButton)
+        while (i < instance.buttons.Length && instance.buttons[i] != choisenButton)
         {
             i++;
         }
-        if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrectionType.reserchPhase)
+        instance.CloseDroplist();
+        if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrection.reserchPhase)
         {
             GameObject.FindWithTag("PhaseController").GetComponent<ResearchPhase>().CharacterChoisen(instance.buttonSortedCharacters[i]);
         }

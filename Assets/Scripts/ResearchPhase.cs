@@ -69,7 +69,7 @@ public class ResearchPhase : Phase
         }
         else if (id == 2) { //researchChar
             buttonManager.Wipe();
-            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrectionType.reserchPhase);
+            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrection.reserchPhase);
         }
         else if (id == 3) //researchSelf
         {
@@ -106,6 +106,6 @@ public class ResearchPhase : Phase
     }
 
     public void CharacterChoisen(Character character) {
-        Debug.Log($"Coisen char name {character.charName}");
+        Debug.Log($"Choisen char name {character.charName}");
     }
 }
