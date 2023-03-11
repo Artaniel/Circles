@@ -107,5 +107,18 @@ public class ResearchPhase : Phase
 
     public void CharacterChoisen(Character character) {
         Debug.Log($"Choisen char name {character.charName}");
+        List<Footprint> viableFootprints = new List<Footprint>();
+        foreach (Crime crime in character.crimeList)
+            foreach (Footprint footprint in crime.footprintsOfThisCrime)
+                viableFootprints.Add(footprint);
+
+        foreach (Evidence evidence in Character.player.evidenceList) {
+            if (viableFootprints.Contains(evidence.footPrint))
+                if (evidence.firmnessOfProof == 100) // exclude solved crimes
+                    viableFootprints.Remove(evidence.footPrint);
+        }                
+
+        Footprint choisenFootprint = viableFootprints[Random.Range(0, viableFootprints.Count)];
+
     }
 }
