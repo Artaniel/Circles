@@ -17,4 +17,13 @@ public class Evidence : MonoBehaviour
         firmnessOfProof = Mathf.Clamp(firmnessOfProof, 0, 100);
         return sucesses > 0;
     }
+
+    public void Init(Footprint _footprint, Character _holder)
+    {
+        footPrint = _footprint;
+        holder = _holder;
+        transform.SetParent(holder.transform);
+        holder.evidenceList.Add(this);
+        crime = footPrint.crime;
+    }
 }

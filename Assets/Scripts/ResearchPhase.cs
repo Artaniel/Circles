@@ -27,13 +27,9 @@ public class ResearchPhase : Phase
             List<Footprint> availableFootprints = Character.player.GetAvailableForPlayerFootprints();
             if (availableFootprints.Count > 0)
             {
-                Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count)]; // get random from list, needed to be coisen by player later
+                Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count)]; // get random from list, needed to be coisen by player later                
                 Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
-                newEvidence.footPrint = choisenFootPrint;
-                newEvidence.transform.parent = Character.player.transform;
-                Character.player.evidenceList.Add(newEvidence);
-                newEvidence.holder = Character.player;
-                newEvidence.crime = choisenFootPrint.crime;
+                newEvidence.Init(choisenFootPrint, Character.player);
 
                 newEvidence.RollForFirmness(newEvidence.holder);
 
@@ -119,6 +115,25 @@ public class ResearchPhase : Phase
         }                
 
         Footprint choisenFootprint = viableFootprints[Random.Range(0, viableFootprints.Count)];
+        int roll = RollManager.Roll(Character.player.Int + Character.player.investigation);
+        if (roll > 0) {
+            bool isKnown = false;
+            Evidence choisenEvidence = null;
+            foreach (Evidence evidence in Character.player.evidenceList)
+                if (evidence.footPrint == choisenFootprint) {
+                    isKnown = true;
+                    choisenEvidence = evidence;
+                }
 
+            if (isKnown) {
+                choisenEvidence.firmnessOfProof += roll * 10;
+            }
+            else {
+                choisenEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
+                choisenEvidence.Init(choisenFootprint, Character.player);
+            }
+            if (choisenEvidence.firmnessOfProof > 100)
+                choisenEvidence.firmnessOfProof = 100;            
+        }
     }
 }
