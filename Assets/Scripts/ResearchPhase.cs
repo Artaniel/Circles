@@ -15,7 +15,7 @@ public class ResearchPhase : Phase
         buttonManager.Wipe();
         buttonManager.AddReplic(Loc.Get("researchRandom"));     //0
         buttonManager.AddReplic(Loc.Get("researchEvidence"));   //1
-        buttonManager.AddReplic(Loc.Get("researchChar") + " Under Construction");       //2
+        buttonManager.AddReplic(Loc.Get("researchChar"));       //2
         buttonManager.AddReplic(Loc.Get("researchSelf"));       //3
     }
 
