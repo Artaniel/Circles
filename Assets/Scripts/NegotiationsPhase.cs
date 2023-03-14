@@ -24,7 +24,10 @@ public class NegotiationsPhase : Phase
         int id = buttonManager.currentButtonPressedId;
         if (id == 0) //negotiationsImproveRelations
         {
-            maintext.text += "UnderCoustruction";
+            buttonManager.Wipe();
+            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrection.negotiationImproveRelations);
+
+            //maintext.text += Loc.Get("Improve relations") + " UnderCoustruction";
         }
         else if (id == 1) //negotiationsScare
         {
@@ -46,6 +49,15 @@ public class NegotiationsPhase : Phase
         {
             maintext.text += "UnderCoustruction";
         }
+        EndPhase();
+    }
+
+    public void ImproveRelations(Character character) {
+        maintext.text += $"{Loc.Get("Improve relations")} {character.charName} was {character.relations[Character.player]}";
+        character.relations[Character.player] += 10;
+        if ((character.relations[Character.player]) > 100)
+            character.relations[Character.player] = 100;
+        maintext.text += $" now {character.relations[Character.player]}";
         EndPhase();
     }
 }

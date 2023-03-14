@@ -10,7 +10,7 @@ public class DroplistManager : MonoBehaviour
     public Character[] buttonSortedCharacters;
     public enum DroplistType { anotherCharacters, myCrimes, myEvidences }
     public DroplistType droplistType;
-    public enum ReturnDirrection { reserchPhase }
+    public enum ReturnDirrection { reserchPhase, negotiationImproveRelations }
     public ReturnDirrection returnDirrection;
 
     public GameObject buttonPrefab;
@@ -72,6 +72,9 @@ public class DroplistManager : MonoBehaviour
         if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrection.reserchPhase)
         {
             GameObject.FindWithTag("PhaseController").GetComponent<ResearchPhase>().CharacterChoisen(instance.buttonSortedCharacters[i]);
+        } else if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrection.negotiationImproveRelations) 
+        {
+            GameObject.FindWithTag("PhaseController").GetComponent<NegotiationsPhase>().ImproveRelations(instance.buttonSortedCharacters[i]);
         }
     }
 }
