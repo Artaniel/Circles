@@ -99,7 +99,7 @@ public class Character : MonoBehaviour
 
     public void ChangeThreatToMe(Character subject, float ammount)
     {
-        subject.relations[this] += ammount;
+        subject.threat[this] += ammount;
         Mathf.Clamp(subject.threat[this], -100f, 100f);
     }
 

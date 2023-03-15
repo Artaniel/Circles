@@ -7,7 +7,7 @@ public class NegotiationsPhase : Phase
     override public void PhaseRun()
     {
         base.PhaseRun();
-        maintext.text = "";
+        maintext.text = Loc.Get("NegotiationsDescription") + "\n";
         buttonManager.Wipe();
 
         buttonManager.AddReplic(Loc.Get("negotiationsImproveRelations"));   //0
@@ -25,39 +25,49 @@ public class NegotiationsPhase : Phase
         if (id == 0) //negotiationsImproveRelations
         {
             buttonManager.Wipe();
+            maintext.text += $"{Loc.Get("Choose person")} \n";
             DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrection.negotiationImproveRelations);
-
-            //maintext.text += Loc.Get("Improve relations") + " UnderCoustruction";
         }
         else if (id == 1) //negotiationsScare
         {
-            maintext.text += "UnderCoustruction";
+            buttonManager.Wipe();
+            maintext.text += $"{Loc.Get("Choose person")} \n";
+            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrection.negotiationThreat);
         }
-        else if(id == 2) //negotiationsBlackmail
+        else if (id == 2) //negotiationsBlackmail
         {
             maintext.text += "UnderCoustruction";
         }
-        else if(id == 3) //negotiationsPublishEvidence
+        else if (id == 3) //negotiationsPublishEvidence
         {
             maintext.text += "UnderCoustruction";
         }
-        else if(id == 4) //negotiationsPressure
+        else if (id == 4) //negotiationsPressure
         {
             maintext.text += "UnderCoustruction";
         }
-        else if(id == 5) //negotiationsRelifPressure
+        else if (id == 5) //negotiationsRelifPressure
         {
             maintext.text += "UnderCoustruction";
         }
         EndPhase();
     }
 
-    public void ImproveRelations(Character character) {
-        maintext.text += $"{Loc.Get("Improve relations")} {character.charName} was {character.relations[Character.player]}";
-        character.relations[Character.player] += 10;
-        if ((character.relations[Character.player]) > 100)
-            character.relations[Character.player] = 100;
-        maintext.text += $" now {character.relations[Character.player]}";
+    public void ImproveRelations(Character character)
+    {
+        maintext.text += $"{Loc.Get("Improve relations")} {character.charName} was {character.relations[Character.player]} {character.threat[Character.player]}";
+        Character.player.ChangeRelationsToMe(character, 20);
+        Character.player.ChangeThreatToMe(character, -10);
+        maintext.text += $" now {character.relations[Character.player]} {character.threat[Character.player]}";
+        EndPhase();
+    }
+
+    public void IncreaseThreat(Character character)
+    {
+        maintext.text += $"{Loc.Get("Improve threat")} {character.charName} was {character.relations[Character.player]} {character.threat[Character.player]}";
+        Character.player.ChangeThreatToMe(character, 20);
+        Character.player.ChangeRelationsToMe(character, -10);
+        maintext.text += $" now {character.relations[Character.player]} {character.threat[Character.player]}";
         EndPhase();
     }
 }
