@@ -74,11 +74,6 @@ public class ResearchPhase : Phase
                 foreach (Footprint footprint in crime.footprintsOfThisCrime)
                     if (footprint.difficulty < 10)
                         availableFootprints.Add(footprint);
-            Debug.Log(Character.player.crimeList);
-            Debug.Log(Character.player.crimeList[0].footprintsOfThisCrime.Count);
-            Debug.Log(Character.player.crimeList[0].footprintsOfThisCrime[0]);
-
-            Debug.Log(availableFootprints.Count);
             if (availableFootprints.Count > 0)
             {
                 Footprint choisenFootprint = availableFootprints[Random.Range(0, availableFootprints.Count)];
