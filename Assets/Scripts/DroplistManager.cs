@@ -67,7 +67,7 @@ public class DroplistManager : MonoBehaviour
         }
         else if (droplistType == DroplistType.playerEvidences) {
             buttons = new GameObject[Character.player.evidenceList.Count];
-            buttonSortedCharacters = new Character[Character.player.evidenceList.Count];
+            buttonSortedEvidences = new Evidence[Character.player.evidenceList.Count];
             int i = 0;
             foreach (Evidence evidence in Character.player.evidenceList)
             {
