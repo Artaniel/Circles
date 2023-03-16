@@ -36,7 +36,9 @@ public class NegotiationsPhase : Phase
         }
         else if (id == 2) //negotiationsBlackmail
         {
-            maintext.text += "UnderCoustruction";
+            buttonManager.Wipe();
+            maintext.text += $"{Loc.Get("Choose evidence")} \n";
+            DroplistManager.instance.Init(DroplistManager.DroplistType.playerEvidences, DroplistManager.ReturnDirrection.negotiationsBlackmailStart);
         }
         else if (id == 3) //negotiationsPublishEvidence
         {
@@ -69,5 +71,9 @@ public class NegotiationsPhase : Phase
         Character.player.ChangeRelationsToMe(character, -10);
         maintext.text += $" now {character.relations[Character.player]} {character.threat[Character.player]}";
         EndPhase();
+    }
+
+    public void BlackmailStart(Evidence evidence) { 
+        
     }
 }

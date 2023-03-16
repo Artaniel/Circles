@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Blackmail : MonoBehaviour
 {
-    public Character ovner;
+    public Character owner;
     public Character victim;
     public Crime crime;
     public Evidence evidence;
 
-    public float GetPressire()
+    public float GetPressure()
     {
         return 10; // подумать тут какую то формулу. Возможно исходя из пааметров крайма и эвиденса
     }

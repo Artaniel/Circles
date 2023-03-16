@@ -8,19 +8,23 @@ public class DroplistManager : MonoBehaviour
     public GameObject droplistPanel;
     public GameObject[] buttons;
     public Character[] buttonSortedCharacters;
-    public enum DroplistType { anotherCharacters, myCrimes, myEvidences }
+    public Evidence[] buttonSortedEvidences;
+    public enum DroplistType { anotherCharacters, playerCrimes, playerEvidences }
     public DroplistType droplistType;
-    public enum ReturnDirrection { reserchPhase, negotiationImproveRelations, negotiationThreat }
+    public enum ReturnDirrection { reserchPhase, negotiationImproveRelations, negotiationThreat, negotiationsBlackmailStart }
     public ReturnDirrection returnDirrection;
 
     public GameObject buttonPrefab;
 
+    private static GameObject phaseController;
     public static DroplistManager instance;
 
     private void Awake()
     {
         if (!instance)
             instance = this;
+        phaseController = GameObject.FindWithTag("PhaseController");
+        if (!phaseController) Debug.LogWarning("Cant find phase controller");
     }
 
     public void CloseDroplist()
@@ -44,17 +48,34 @@ public class DroplistManager : MonoBehaviour
         ClearList();
         droplistType = _type;
         returnDirrection = _returnDirection;
-        if (_type == DroplistType.anotherCharacters) {
+        if (droplistType == DroplistType.anotherCharacters)
+        {
             List<Character> anotherChars = Character.allCharLists;
             anotherChars.Remove(Character.player);
             buttons = new GameObject[anotherChars.Count];
             buttonSortedCharacters = new Character[anotherChars.Count];
             int i = 0;
-            foreach (Character character in anotherChars) {
+            foreach (Character character in anotherChars)
+            {
                 buttonSortedCharacters[i] = character;
                 buttons[i] = Instantiate(buttonPrefab);
                 buttons[i].transform.SetParent(transform);
                 buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = character.charName;
+                buttons[i].SetActive(true);
+                i++;
+            }
+        }
+        else if (droplistType == DroplistType.playerEvidences) {
+            buttons = new GameObject[Character.player.evidenceList.Count];
+            buttonSortedCharacters = new Character[Character.player.evidenceList.Count];
+            int i = 0;
+            foreach (Evidence evidence in Character.player.evidenceList)
+            {
+                buttonSortedEvidences[i] = evidence;
+                buttons[i] = Instantiate(buttonPrefab);
+                buttons[i].transform.SetParent(transform);
+                buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = 
+                    $"{evidence.crime.guilty.charName} {evidence.crime.decription} firmness {evidence.firmnessOfProof}";
                 buttons[i].SetActive(true);
                 i++;
             }
@@ -69,17 +90,24 @@ public class DroplistManager : MonoBehaviour
             i++;
         }
         instance.CloseDroplist();
-        if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrection.reserchPhase)
+        if (instance.droplistType == DroplistType.anotherCharacters)
         {
-            GameObject.FindWithTag("PhaseController").GetComponent<ResearchPhase>().CharacterChoisen(instance.buttonSortedCharacters[i]);
+            if (instance.returnDirrection == ReturnDirrection.reserchPhase)
+                phaseController.GetComponent<ResearchPhase>().CharacterChoisen(instance.buttonSortedCharacters[i]);
+            else if (instance.returnDirrection == ReturnDirrection.negotiationImproveRelations)
+                phaseController.GetComponent<NegotiationsPhase>().ImproveRelations(instance.buttonSortedCharacters[i]);
+            else if (instance.returnDirrection == ReturnDirrection.negotiationThreat)
+                phaseController.GetComponent<NegotiationsPhase>().IncreaseThreat(instance.buttonSortedCharacters[i]);
         }
-        else if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrection.negotiationImproveRelations)
+        else if (instance.droplistType == DroplistType.playerCrimes)
         {
-            GameObject.FindWithTag("PhaseController").GetComponent<NegotiationsPhase>().ImproveRelations(instance.buttonSortedCharacters[i]);
+            //todo
         }
-        else if (instance.droplistType == DroplistType.anotherCharacters && instance.returnDirrection == ReturnDirrection.negotiationThreat)
+        else if (instance.droplistType == DroplistType.playerEvidences)
         {
-            GameObject.FindWithTag("PhaseController").GetComponent<NegotiationsPhase>().IncreaseThreat(instance.buttonSortedCharacters[i]);
+            if (instance.returnDirrection == ReturnDirrection.negotiationsBlackmailStart)
+                phaseController.GetComponent<NegotiationsPhase>().BlackmailStart(instance.buttonSortedEvidences[i]);
+
         }
     }
 }
