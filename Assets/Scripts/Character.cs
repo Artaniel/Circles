@@ -106,4 +106,13 @@ public class Character : MonoBehaviour
     public float GetPresureBalance(Character target) {
         return pressure[target] - target.pressure[this];
     }
+
+    public List<Evidence> ViableEvidences() {
+        List<Evidence> result = new List<Evidence>();
+        foreach (Evidence evidence in evidenceList)
+            if (evidence.IsValidForBlackmail())
+                result.Add(evidence);
+        return result;
+    }
+
 }

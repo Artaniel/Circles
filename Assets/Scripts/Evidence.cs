@@ -26,4 +26,8 @@ public class Evidence : MonoBehaviour
         holder.evidenceList.Add(this);
         crime = footPrint.crime;
     }
+
+    public bool IsValidForBlackmail() {
+        return firmnessOfProof == 100; // change it later mb, need some GD ideas
+    }
 }

@@ -66,10 +66,11 @@ public class DroplistManager : MonoBehaviour
             }
         }
         else if (droplistType == DroplistType.playerEvidences) {
-            buttons = new GameObject[Character.player.evidenceList.Count];
-            buttonSortedEvidences = new Evidence[Character.player.evidenceList.Count];
+            List<Evidence> viableEvidences = Character.player.ViableEvidences();
+            buttons = new GameObject[viableEvidences.Count];
+            buttonSortedEvidences = new Evidence[viableEvidences.Count];
             int i = 0;
-            foreach (Evidence evidence in Character.player.evidenceList)
+            foreach (Evidence evidence in viableEvidences)
             {
                 buttonSortedEvidences[i] = evidence;
                 buttons[i] = Instantiate(buttonPrefab);
