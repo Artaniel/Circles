@@ -715,6 +715,8 @@ MonoBehaviour:
   buttonManager: {fileID: 1205378475}
   isInEndPhase: 0
   nextPhase: {fileID: 1978337935}
+  blackmailPrefab: {fileID: 23385857191955091, guid: 94b7e40f927ffd647b82ace9766a3894,
+    type: 3}
 --- !u!1001 &1403034656282686386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1022,6 +1024,11 @@ PrefabInstance:
       propertyPath: maintext
       value: 
       objectReference: {fileID: 154999901}
+    - target: {fileID: 6728129824910064162, guid: 0df49e9ced4f96a43ad8d361270269f3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6728129824910064162, guid: 0df49e9ced4f96a43ad8d361270269f3,
         type: 3}
       propertyPath: buttonManager

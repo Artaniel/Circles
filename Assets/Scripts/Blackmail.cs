@@ -11,7 +11,16 @@ public class Blackmail : MonoBehaviour
 
     public float GetPressure()
     {
-        return 10; // подумать тут какую то формулу. Возможно исходя из пааметров крайма и эвиденса
+        return crime.gravity;
+    }
+
+    public void Init( Evidence _evidence)
+    {
+        evidence = _evidence;
+        owner = evidence.holder;
+        crime = evidence.crime;
+        victim = crime.guilty;
+        transform.SetParent(owner.transform);
     }
 
 }

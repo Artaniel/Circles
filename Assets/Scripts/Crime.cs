@@ -6,9 +6,10 @@ public class Crime : MonoBehaviour
 {
     public Character guilty;
     public Character arbitter;
-    public List<Evidence> evidences; 
-    public List<Footprint> footprintsOfThisCrime; 
+    public List<Evidence> evidences;
+    public List<Footprint> footprintsOfThisCrime;
     public string decription;
+    public int gravity = 5; //[0..10]
 
     public Footprint footprintPrefab;
 

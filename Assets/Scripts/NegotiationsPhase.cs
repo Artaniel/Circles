@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NegotiationsPhase : Phase
 {
+    public GameObject blackmailPrefab;
+
     override public void PhaseRun()
     {
         base.PhaseRun();
@@ -73,7 +75,8 @@ public class NegotiationsPhase : Phase
         EndPhase();
     }
 
-    public void BlackmailStart(Evidence evidence) { 
-        
+    public void BlackmailStart(Evidence evidence) {
+        Blackmail blackmail = Instantiate(blackmailPrefab).GetComponent<Blackmail>();
+        blackmail.Init(evidence);        
     }
 }
