@@ -87,7 +87,6 @@ public class ResearchPhase : Phase
                 maintext.text += Loc.Get("evidenceReserchFail");
             }
             EndPhase();
-
         }
         else
         {

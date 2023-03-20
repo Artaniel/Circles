@@ -44,7 +44,9 @@ public class NegotiationsPhase : Phase
         }
         else if (id == 3) //negotiationsPublishEvidence
         {
-            maintext.text += "UnderCoustruction";
+            buttonManager.Wipe();
+            maintext.text += $"{Loc.Get("Choose evidence")} \n";
+            DroplistManager.instance.Init(DroplistManager.DroplistType.playerEvidences, DroplistManager.ReturnDirrection.publishEvidence);
         }
         else if (id == 4) //negotiationsPressure
         {
@@ -78,5 +80,9 @@ public class NegotiationsPhase : Phase
     public void BlackmailStart(Evidence evidence) {
         Blackmail blackmail = Instantiate(blackmailPrefab).GetComponent<Blackmail>();
         blackmail.Init(evidence);        
+    }
+
+    public void PublishEvidence(Evidence evidence) { 
+    
     }
 }

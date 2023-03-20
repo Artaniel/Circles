@@ -10,6 +10,7 @@ public class Crime : MonoBehaviour
     public List<Footprint> footprintsOfThisCrime;
     public string decription;
     public int gravity = 5; //[0..10]
+    public bool published = false;
 
     public Footprint footprintPrefab;
 

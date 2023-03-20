@@ -11,7 +11,7 @@ public class DroplistManager : MonoBehaviour
     public Evidence[] buttonSortedEvidences;
     public enum DroplistType { anotherCharacters, playerCrimes, playerEvidences }
     public DroplistType droplistType;
-    public enum ReturnDirrection { reserchPhase, negotiationImproveRelations, negotiationThreat, negotiationsBlackmailStart }
+    public enum ReturnDirrection { reserchPhase, negotiationImproveRelations, negotiationThreat, negotiationsBlackmailStart, publishEvidence }
     public ReturnDirrection returnDirrection;
 
     public GameObject buttonPrefab;
@@ -108,7 +108,8 @@ public class DroplistManager : MonoBehaviour
         {
             if (instance.returnDirrection == ReturnDirrection.negotiationsBlackmailStart)
                 phaseController.GetComponent<NegotiationsPhase>().BlackmailStart(instance.buttonSortedEvidences[i]);
-
+            else if (instance.returnDirrection == ReturnDirrection.publishEvidence)
+                phaseController.GetComponent<NegotiationsPhase>().PublishEvidence(instance.buttonSortedEvidences[i]);
         }
     }
 }
