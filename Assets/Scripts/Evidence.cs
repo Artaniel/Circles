@@ -28,6 +28,6 @@ public class Evidence : MonoBehaviour
     }
 
     public bool IsValidForBlackmail() {
-        return firmnessOfProof == 100; // change it later mb, need some GD ideas
+        return (firmnessOfProof == 100 && !crime.published); // change it later mb, need some GD ideas
     }
 }

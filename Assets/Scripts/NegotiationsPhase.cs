@@ -82,7 +82,8 @@ public class NegotiationsPhase : Phase
         blackmail.Init(evidence);        
     }
 
-    public void PublishEvidence(Evidence evidence) { 
-    
+    public void PublishEvidence(Evidence evidence) {
+        evidence.crime.published = true;
+        //under construction
     }
 }
