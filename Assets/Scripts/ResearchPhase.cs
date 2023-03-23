@@ -106,28 +106,40 @@ public class ResearchPhase : Phase
             if (viableFootprints.Contains(evidence.footPrint))
                 if (evidence.firmnessOfProof == 100) // exclude solved crimes
                     viableFootprints.Remove(evidence.footPrint);
-        }                
-
-        Footprint choisenFootprint = viableFootprints[Random.Range(0, viableFootprints.Count)];
-        int roll = RollManager.Roll(Character.player.Int + Character.player.investigation);
-        if (roll > 0) {
-            bool isKnown = false;
-            Evidence choisenEvidence = null;
-            foreach (Evidence evidence in Character.player.evidenceList)
-                if (evidence.footPrint == choisenFootprint) {
-                    isKnown = true;
-                    choisenEvidence = evidence;
-                }
-
-            if (isKnown) {
-                choisenEvidence.firmnessOfProof += roll * 10;
-            }
-            else {
-                choisenEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
-                choisenEvidence.Init(choisenFootprint, Character.player);
-            }
-            if (choisenEvidence.firmnessOfProof > 100)
-                choisenEvidence.firmnessOfProof = 100;            
         }
+        if (viableFootprints.Count != 0)
+        {
+            Footprint choisenFootprint = viableFootprints[Random.Range(0, viableFootprints.Count)];
+            int roll = RollManager.Roll(Character.player.Int + Character.player.investigation);
+            if (roll > 0)
+            {
+                bool isKnown = false;
+                Evidence choisenEvidence = null;
+                foreach (Evidence evidence in Character.player.evidenceList)
+                    if (evidence.footPrint == choisenFootprint)
+                    {
+                        isKnown = true;
+                        choisenEvidence = evidence;
+                    }
+
+                if (isKnown)
+                {
+                    choisenEvidence.firmnessOfProof += roll * 10;
+                }
+                else
+                {
+                    choisenEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
+                    choisenEvidence.Init(choisenFootprint, Character.player);
+                }
+                if (choisenEvidence.firmnessOfProof > 100)
+                    choisenEvidence.firmnessOfProof = 100;
+
+                maintext.text += $"Found {choisenEvidence.crime.guilty.charName} firmness = {choisenEvidence.firmnessOfProof}";
+            }
+        }
+        else
+            maintext.text += Loc.Get("noEvidence");
+        EndPhase();
+
     }
 }
