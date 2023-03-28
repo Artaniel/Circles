@@ -38,6 +38,7 @@ public class Character : MonoBehaviour
     public Dictionary<Character, float> relations;
     public Dictionary<Character, float> threat;
     public Dictionary<Character, float> pressure;
+    public List<Blackmail> blackmailList;
 
     public static Character player = null;
     public bool isPlayer = false; 

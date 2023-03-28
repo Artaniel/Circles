@@ -48,6 +48,10 @@ public class CharSheetUI : MonoBehaviour
     public GameObject crimeRecordPrefab;
     public List<GameObject> crimeUIList;
 
+    public GameObject blackmailsPanel;
+    public GameObject blackmailPrefab;
+    public List<GameObject> blackmailUIList;
+
     private void Awake()
     {
         if (!instance)
@@ -133,6 +137,19 @@ public class CharSheetUI : MonoBehaviour
             crimeRecord.transform.SetParent(crimesPanel.transform);
             crimeRecord.GetComponent<TextMeshProUGUI>().text = $"{crime.decription}";
             crimeUIList.Add(crimeRecord);
+        }
+    }
+
+    private void BlackmailsRender(Character character)
+    {
+        ClearList(blackmailUIList);
+        GameObject blackmailRecord;
+        foreach (Blackmail blackmail in character.blackmailList)
+        {
+            blackmailRecord = Instantiate(blackmailPrefab);
+            blackmailRecord.transform.SetParent(blackmailsPanel.transform);
+            blackmailRecord.GetComponent<TextMeshProUGUI>().text = $"{blackmail.crime.guilty}";
+            blackmailUIList.Add(blackmailRecord);
         }
     }
 
