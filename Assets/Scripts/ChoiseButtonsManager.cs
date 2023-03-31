@@ -21,7 +21,6 @@ public class ChoiseButtonsManager : MonoBehaviour
 
     public void Wipe()
     {
-        Debug.Log("Wipe");
         foreach (TextMeshProUGUI buttonText in buttonTexts)
             buttonText.text = "";
         foreach (GameObject button in buttons)

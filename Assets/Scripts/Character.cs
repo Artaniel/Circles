@@ -81,14 +81,11 @@ public class Character : MonoBehaviour
         foreach (Evidence evidence in evidenceList) {
             knownFootprints.Add(evidence.footPrint);
         }
-        Debug.Log(knownFootprints.Count);
-        Debug.Log(Footprint.footprintsList.Count);
 
         foreach (Footprint footprint in Footprint.footprintsList) {
             if (!knownFootprints.Contains(footprint) && footprint.crime.guilty != player)
                 result.Add(footprint);
         }
-        Debug.Log(result.Count);
 
         return result;   
     }

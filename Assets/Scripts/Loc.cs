@@ -24,15 +24,15 @@ public class Loc : MonoBehaviour
         {
             if (ENlocale.ContainsKey(key))
                 return ENlocale[key];
-            else
-                Debug.Log("Error, no translation, EN " + key);
+            //else
+                //Debug.Log("Error, no translation, EN " + key);
         }
         else if (currentLocale == locale.RU)
         {
             if (RUlocale.ContainsKey(key))
                 return RUlocale[key];
-            else
-                Debug.Log("Error, no translation, RU " + key);
+            //else
+                //Debug.Log("Error, no translation, RU " + key);
         }
         return key;
     }
@@ -88,7 +88,7 @@ public class Loc : MonoBehaviour
         RUlocale.Add("negotiationsImproveRelations", "Улучшить отношение");
         RUlocale.Add("negotiationsScare", "Напугать");
         RUlocale.Add("negotiationsBlackmail", "Начать шантаж");
-        RUlocale.Add("negotiationsPublishEvidence", "Начать шантаж");
+        RUlocale.Add("negotiationsPublishEvidence", "Опубликовать улику");
         RUlocale.Add("negotiationsPressure", "Напомнить о долге");
         RUlocale.Add("negotiationsRelifPressure", "Снять давление с себя");
 
