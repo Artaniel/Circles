@@ -6906,12 +6906,18 @@ MonoBehaviour:
   relationsRecordPrefab: {fileID: 7951256295589057454, guid: d99d1694a75e56d418ea8c9cb0a6f2ec,
     type: 3}
   relationsUIList: []
-  evidencesPanel: {fileID: 0}
-  evidenceRecordPrefab: {fileID: 0}
+  evidencesPanel: {fileID: 7872374070166768568}
+  evidenceRecordPrefab: {fileID: 7951256295589057454, guid: d99d1694a75e56d418ea8c9cb0a6f2ec,
+    type: 3}
   evidencesUIList: []
-  crimesPanel: {fileID: 0}
-  crimeRecordPrefab: {fileID: 0}
+  crimesPanel: {fileID: 4911818465365582629}
+  crimeRecordPrefab: {fileID: 7951256295589057454, guid: d99d1694a75e56d418ea8c9cb0a6f2ec,
+    type: 3}
   crimeUIList: []
+  blackmailsPanel: {fileID: 4873589893535602763}
+  blackmailPrefab: {fileID: 7951256295589057454, guid: d99d1694a75e56d418ea8c9cb0a6f2ec,
+    type: 3}
+  blackmailUIList: []
 --- !u!1 &7037262174486938920
 GameObject:
   m_ObjectHideFlags: 0

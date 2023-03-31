@@ -21,6 +21,7 @@ public class Blackmail : MonoBehaviour
         crime = evidence.crime;
         victim = crime.guilty;
         transform.SetParent(owner.transform);
+        owner.blackmailList.Add(this);
     }
 
 }

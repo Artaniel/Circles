@@ -98,6 +98,7 @@ public class CharSheetUI : MonoBehaviour
         RelationsRender(character);
         EvidencesRender(character);
         CrimesRender(character);
+        BlackmailsRender(character);
     }
 
     private void RelationsRender(Character thisCharacter) {
@@ -144,11 +145,13 @@ public class CharSheetUI : MonoBehaviour
     {
         ClearList(blackmailUIList);
         GameObject blackmailRecord;
+        Debug.Log(1);
         foreach (Blackmail blackmail in character.blackmailList)
         {
+            Debug.Log(blackmail.crime.guilty);
             blackmailRecord = Instantiate(blackmailPrefab);
             blackmailRecord.transform.SetParent(blackmailsPanel.transform);
-            blackmailRecord.GetComponent<TextMeshProUGUI>().text = $"{blackmail.crime.guilty}";
+            blackmailRecord.GetComponent<TextMeshProUGUI>().text = $"blackmail {blackmail.crime.guilty}";
             blackmailUIList.Add(blackmailRecord);
         }
     }

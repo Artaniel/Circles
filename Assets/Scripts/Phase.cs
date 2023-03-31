@@ -17,7 +17,6 @@ public abstract class Phase : MonoBehaviour
     }
 
     virtual public void EndPhase() {
-        Debug.Log("Endphase");
         isInEndPhase = true;
         buttonManager.Wipe();
         buttonManager.AddReplic(Loc.Get("next")); 
