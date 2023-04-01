@@ -51,12 +51,13 @@ public class NegotiationsPhase : Phase
         else if (id == 4) //negotiationsPressure
         {
             maintext.text += "UnderCoustruction";
+            EndPhase();
         }
         else if (id == 5) //negotiationsRelifPressure
         {
             maintext.text += "UnderCoustruction";
+            EndPhase();
         }
-        EndPhase();
     }
 
     public void ImproveRelations(Character character)
