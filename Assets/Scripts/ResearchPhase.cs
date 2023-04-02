@@ -13,8 +13,8 @@ public class ResearchPhase : Phase
         base.PhaseRun();
         maintext.text = Loc.Get("researchDesc");
         buttonManager.Wipe();
-        buttonManager.AddReplic(Loc.Get("researchRandom"));     //0
-        buttonManager.AddReplic(Loc.Get("researchEvidence"));   //1
+        buttonManager.AddReplic(Loc.Get("researchRandom"), Character.player.GetAvailableForPlayerFootprints().Count > 0);     //0
+        buttonManager.AddReplic(Loc.Get("researchEvidence"), Character.player.ViableEvidences().Count > 0);   //1
         buttonManager.AddReplic(Loc.Get("researchChar"));       //2
         buttonManager.AddReplic(Loc.Get("researchSelf"));       //3
     }
