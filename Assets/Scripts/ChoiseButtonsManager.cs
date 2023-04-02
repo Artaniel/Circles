@@ -24,7 +24,10 @@ public class ChoiseButtonsManager : MonoBehaviour
         foreach (TextMeshProUGUI buttonText in buttonTexts)
             buttonText.text = "";
         foreach (GameObject button in buttons)
+        {
             button.SetActive(false);
+            button.GetComponent<Button>().interactable = true;
+        }
         activeButtons = 0;
         currentButtonPressedId = 0;
     }
@@ -34,12 +37,11 @@ public class ChoiseButtonsManager : MonoBehaviour
             return AddReplic(text);
         else
         {
-            int button = AddReplic(text);
-            buttons[activeButtons - 1].SetActive(false);
-            return button;
+            int buttonID = AddReplic(text);
+            buttons[buttonID].GetComponent<Button>().interactable = false;
+            return buttonID;
         }
     }
-
 
     public int AddReplic(string text) { //returns button ID
         buttons[activeButtons].SetActive(true);
