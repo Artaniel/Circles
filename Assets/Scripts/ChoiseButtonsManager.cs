@@ -29,6 +29,18 @@ public class ChoiseButtonsManager : MonoBehaviour
         currentButtonPressedId = 0;
     }
 
+    public int AddReplic(string text, bool isAvaible) {
+        if (isAvaible)
+            return AddReplic(text);
+        else
+        {
+            int button = AddReplic(text);
+            buttons[activeButtons - 1].SetActive(false);
+            return button;
+        }
+    }
+
+
     public int AddReplic(string text) { //returns button ID
         buttons[activeButtons].SetActive(true);
         buttonTexts[activeButtons].text = text;
