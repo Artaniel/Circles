@@ -105,10 +105,19 @@ public class Character : MonoBehaviour
         return pressure[target] - target.pressure[this];
     }
 
-    public List<Evidence> ViableEvidences() {
+    public List<Evidence> ViableEvidences(bool isFullFirmness) {
         List<Evidence> result = new List<Evidence>();
         foreach (Evidence evidence in evidenceList)
-            if (evidence.IsValidForBlackmail())
+            if (evidence.IsValidForBlackmail() ^ !isFullFirmness)
+                result.Add(evidence);
+        return result;
+    }
+
+    public List<Evidence> BlackmailNonViableEvidences()
+    {
+        List<Evidence> result = new List<Evidence>();
+        foreach (Evidence evidence in evidenceList)
+            if (!evidence.IsValidForBlackmail())
                 result.Add(evidence);
         return result;
     }

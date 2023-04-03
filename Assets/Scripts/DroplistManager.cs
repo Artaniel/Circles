@@ -66,7 +66,8 @@ public class DroplistManager : MonoBehaviour
             }
         }
         else if (droplistType == DroplistType.playerEvidences) {
-            List<Evidence> viableEvidences = Character.player.ViableEvidences();
+            bool isfullFirmness = returnDirrection == ReturnDirrection.negotiationsBlackmailStart;
+            List<Evidence> viableEvidences =  Character.player.ViableEvidences(isfullFirmness);
             buttons = new GameObject[viableEvidences.Count];
             buttonSortedEvidences = new Evidence[viableEvidences.Count];
             int i = 0;
