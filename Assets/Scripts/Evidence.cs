@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Evidence : MonoBehaviour
+public class Evidence : MonoBehaviour, IButtonable
 {
     public Crime crime;
     public Footprint footPrint;
@@ -29,5 +29,9 @@ public class Evidence : MonoBehaviour
 
     public bool IsValidForBlackmail() {
         return (firmnessOfProof == 100 && !crime.published); // change it later mb, need some GD ideas
+    }
+
+    public string GetButtonText() {
+        return $"{crime.guilty.charName} {crime.decription} firmness {firmnessOfProof}";
     }
 }

@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public class Convert {
+    public GameObject button;
+    public delegate void returnLink();
+}
+
+
 public class DroplistManager : MonoBehaviour
 {
     public GameObject droplistPanel;
     public GameObject[] buttons;
+    private Convert[] buttonRecords;
     public Character[] buttonSortedCharacters;
     public Evidence[] buttonSortedEvidences;
     public enum DroplistType { anotherCharacters, playerCrimes, playerEvidences }
@@ -42,7 +49,25 @@ public class DroplistManager : MonoBehaviour
             Destroy(button);
     }
 
-    public void Init(DroplistType _type, ReturnDirrection _returnDirection)
+    public void MakeDropDownFormList(List<IButtonable> itemList)// почитать про делегаты и добавить сюда
+    {
+        OpenDroplist();
+        ClearList();
+        int i = 0;
+        buttons = new GameObject[itemList.Count];
+        buttonSortedEvidences = new Evidence[itemList.Count];
+        buttonRecords = new Convert[itemList.Count];
+        foreach (IButtonable item in itemList) {
+            // делегат
+            buttons[i] = Instantiate(buttonPrefab);
+            buttons[i].transform.SetParent(transform);
+            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = item.GetButtonText();
+            buttons[i].SetActive(true);
+            i++;
+        }
+    }
+
+    public void Init(DroplistType _type, ReturnDirrection _returnDirection) 
     {
         OpenDroplist();
         ClearList();
