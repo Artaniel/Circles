@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
 
 public class Convert {
     public GameObject button;
@@ -49,93 +51,20 @@ public class DroplistManager : MonoBehaviour
             Destroy(button);
     }
 
-    public void MakeDropDownFormList(List<IButtonable> itemList)// почитать про делегаты и добавить сюда
+    public void MakeDropDownFormList(List<IButtonable> itemList, Phase sender)
     {
         OpenDroplist();
         ClearList();
         int i = 0;
         buttons = new GameObject[itemList.Count];
-        buttonSortedEvidences = new Evidence[itemList.Count];
-        buttonRecords = new Convert[itemList.Count];
         foreach (IButtonable item in itemList) {
-            // делегат
             buttons[i] = Instantiate(buttonPrefab);
             buttons[i].transform.SetParent(transform);
+            buttons[i].GetComponent<Button>().onClick.RemoveAllListeners();
+            buttons[i].GetComponent<Button>().onClick.AddListener(delegate { CloseDroplist(); sender.ButtonPressed(item); }) ;
             buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = item.GetButtonText();
             buttons[i].SetActive(true);
             i++;
-        }
-    }
-
-    public void Init(DroplistType _type, ReturnDirrection _returnDirection) 
-    {
-        OpenDroplist();
-        ClearList();
-        droplistType = _type;
-        returnDirrection = _returnDirection;
-        if (droplistType == DroplistType.anotherCharacters)
-        {
-            List<Character> anotherChars = Character.allCharLists;
-            anotherChars.Remove(Character.player);
-            buttons = new GameObject[anotherChars.Count];
-            buttonSortedCharacters = new Character[anotherChars.Count];
-            int i = 0;
-            foreach (Character character in anotherChars)
-            {
-                buttonSortedCharacters[i] = character;
-                buttons[i] = Instantiate(buttonPrefab);
-                buttons[i].transform.SetParent(transform);
-                buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = character.charName;
-                buttons[i].SetActive(true);
-                i++;
-            }
-        }
-        else if (droplistType == DroplistType.playerEvidences) {
-            bool isfullFirmness = returnDirrection == ReturnDirrection.negotiationsBlackmailStart;
-            List<Evidence> viableEvidences =  Character.player.ViableEvidences(isfullFirmness);
-            buttons = new GameObject[viableEvidences.Count];
-            buttonSortedEvidences = new Evidence[viableEvidences.Count];
-            int i = 0;
-            foreach (Evidence evidence in viableEvidences)
-            {
-                buttonSortedEvidences[i] = evidence;
-                buttons[i] = Instantiate(buttonPrefab);
-                buttons[i].transform.SetParent(transform);
-                buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = 
-                    $"{evidence.crime.guilty.charName} {evidence.crime.decription} firmness {evidence.firmnessOfProof}";
-                buttons[i].SetActive(true);
-                i++;
-            }
-        }
-    }
-
-    public static void OnButtonPress(GameObject choisenButton)
-    {
-        int i = 0;
-        while (i < instance.buttons.Length && instance.buttons[i] != choisenButton)
-        {
-            i++;
-        }
-        instance.CloseDroplist();
-        if (instance.droplistType == DroplistType.anotherCharacters)
-        {
-            if (instance.returnDirrection == ReturnDirrection.reserchPhase)
-                phaseController.GetComponent<ResearchPhase>().CharacterChoisen(instance.buttonSortedCharacters[i]);
-            else if (instance.returnDirrection == ReturnDirrection.negotiationImproveRelations)
-                phaseController.GetComponent<NegotiationsPhase>().ImproveRelations(instance.buttonSortedCharacters[i]);
-            else if (instance.returnDirrection == ReturnDirrection.negotiationThreat)
-                phaseController.GetComponent<NegotiationsPhase>().IncreaseThreat(instance.buttonSortedCharacters[i]);
-        }
-        else if (instance.droplistType == DroplistType.playerCrimes)
-        {
-            //todo
-        }
-        else if (instance.droplistType == DroplistType.playerEvidences)
-        {
-            if (instance.returnDirrection == ReturnDirrection.negotiationsBlackmailStart)
-                phaseController.GetComponent<NegotiationsPhase>().BlackmailStart(instance.buttonSortedEvidences[i]);
-            else if (instance.returnDirrection == ReturnDirrection.publishEvidence)
-                phaseController.GetComponent<NegotiationsPhase>().PublishEvidence(instance.buttonSortedEvidences[i]);
         }
     }
 }

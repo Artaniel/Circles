@@ -45,7 +45,7 @@ public class ResearchPhase : Phase
         }
         else if (id == 1) //researchEvidence
         {
-            if (Character.player.evidenceList.Count > 0)
+            if (Character.player.evidenceList.Count > 0) // переделать с случайного на конкретный выбор через droplist
             {
                 Evidence evidence = Character.player.evidenceList[Random.Range(0, Character.player.evidenceList.Count)];
                 bool rollIsSucessful = evidence.RollForFirmness(Character.player);
@@ -65,7 +65,7 @@ public class ResearchPhase : Phase
         }
         else if (id == 2) { //researchChar
             buttonManager.Wipe();
-            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrection.reserchPhase);
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
         }
         else if (id == 3) //researchSelf
         {
@@ -96,7 +96,6 @@ public class ResearchPhase : Phase
     }
 
     public void CharacterChoisen(Character character) {
-        Debug.Log($"Choisen char name {character.charName}");
         List<Footprint> viableFootprints = new List<Footprint>();
         foreach (Crime crime in character.crimeList)
             foreach (Footprint footprint in crime.footprintsOfThisCrime)
@@ -141,5 +140,18 @@ public class ResearchPhase : Phase
             maintext.text += Loc.Get("noEvidence");
         EndPhase();
 
+    }
+
+    public void EvidenceChoisen(Evidence evidence)
+    {
+
+    }
+
+    override public void ButtonPressed(IButtonable item)
+    {
+        if (item is Character)
+            CharacterChoisen((Character)item);
+        else if (item is Evidence)
+            EvidenceChoisen((Evidence)item);
     }
 }

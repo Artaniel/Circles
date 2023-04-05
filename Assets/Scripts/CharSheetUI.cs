@@ -102,7 +102,7 @@ public class CharSheetUI : MonoBehaviour
     }
 
     private void RelationsRender(Character thisCharacter) {
-        List<Character> anotherChars = Character.allCharLists;
+        List<Character> anotherChars = Character.allCharacters;
         anotherChars.Remove(thisCharacter);
         ClearList(relationsUIList);
         GameObject relationsRecord;

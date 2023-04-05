@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IButtonable
 {
     public string charName;
     public string race;
@@ -42,18 +43,19 @@ public class Character : MonoBehaviour
 
     public static Character player = null;
     public bool isPlayer = false; 
-    public static List<Character> allCharLists = new List<Character>();
+    public static List<Character> allCharacters = new List<Character>();
 
     private void Awake()
     {
-        Init();
-        allCharLists.Add(this);
+        if (isPlayer)
+            player = this;
+        allCharacters.Add(this);
     }
 
     private void Start()
     {
         relations = new Dictionary<Character, float>();
-        foreach (Character charSheet in allCharLists)
+        foreach (Character charSheet in allCharacters)
         {
             if (charSheet != this)
             {
@@ -61,18 +63,13 @@ public class Character : MonoBehaviour
             }
         }
         threat = new Dictionary<Character, float>();
-        foreach (Character charSheet in allCharLists)
+        foreach (Character charSheet in allCharacters)
         {
             if (charSheet != this)
             {
                 threat.Add(charSheet, 0);
             }
         }
-    }
-
-    private void Init() {
-        if (isPlayer)
-            player = this;
     }
 
     public List<Footprint> GetAvailableForPlayerFootprints() {
@@ -122,4 +119,25 @@ public class Character : MonoBehaviour
         return result;
     }
 
+    public string GetButtonText() {
+        return charName;
+    }
+
+    public List<IButtonable> GetCaractersExceptMe() {
+        List<IButtonable> result = allCharacters.Cast<IButtonable>().ToList();
+        result.Remove(this);
+        return result;
+    }
+
+    public List<IButtonable> GetEvidencesByFirmness(bool addFullFirmnes, bool addNonFullFirmness)
+    {
+        List<IButtonable> result = new List<IButtonable>();
+        foreach (Evidence evidence in evidenceList) {
+            if (addFullFirmnes && evidence.firmnessOfProof == 100)
+                result.Add(evidence);
+            if (addNonFullFirmness && evidence.firmnessOfProof < 100)
+                result.Add(evidence);
+        }
+        return result; 
+    }    
 }

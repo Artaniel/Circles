@@ -25,7 +25,7 @@ public class RandomEventPhase : Phase
     }
 
     private void ChangeRandomRelation(float ammount) {
-        List<Character> charSheets = Character.allCharLists;
+        List<Character> charSheets = Character.allCharacters;
         charSheets.Remove(Character.player);
         Character target = charSheets[Random.Range(0, charSheets.Count)];
         Character.player.ChangeRelationsToMe(target, ammount);
@@ -56,7 +56,6 @@ public class RandomEventPhase : Phase
         }
     }
 
-    override protected void InputParcer() { 
-
-    }
+    override protected void InputParcer() {}
+    override public void ButtonPressed(IButtonable item) {}
 }

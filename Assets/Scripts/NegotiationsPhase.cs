@@ -5,6 +5,7 @@ using UnityEngine;
 public class NegotiationsPhase : Phase
 {
     public GameObject blackmailPrefab;
+    private int id;
 
     override public void PhaseRun()
     {
@@ -23,30 +24,30 @@ public class NegotiationsPhase : Phase
 
     override protected void InputParcer()
     {
-        int id = buttonManager.currentButtonPressedId;
+        id = buttonManager.currentButtonPressedId;
         if (id == 0) //negotiationsImproveRelations
         {
             buttonManager.Wipe();
             maintext.text += $"{Loc.Get("Choose person")} \n";
-            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrection.negotiationImproveRelations);
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
         }
         else if (id == 1) //negotiationsScare
         {
             buttonManager.Wipe();
             maintext.text += $"{Loc.Get("Choose person")} \n";
-            DroplistManager.instance.Init(DroplistManager.DroplistType.anotherCharacters, DroplistManager.ReturnDirrection.negotiationThreat);
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
         }
         else if (id == 2) //negotiationsBlackmail
         {
             buttonManager.Wipe();
             maintext.text += $"{Loc.Get("Choose evidence")} \n";
-            DroplistManager.instance.Init(DroplistManager.DroplistType.playerEvidences, DroplistManager.ReturnDirrection.negotiationsBlackmailStart);
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByFirmness(true, false), this);            
         }
         else if (id == 3) //negotiationsPublishEvidence
         {
             buttonManager.Wipe();
             maintext.text += $"{Loc.Get("Choose evidence")} \n";
-            DroplistManager.instance.Init(DroplistManager.DroplistType.playerEvidences, DroplistManager.ReturnDirrection.publishEvidence);
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByFirmness(true, false), this);
         }
         else if (id == 4) //negotiationsPressure
         {
@@ -57,6 +58,25 @@ public class NegotiationsPhase : Phase
         {
             maintext.text += "UnderCoustruction";
             EndPhase();
+        }
+    }
+
+    override public void ButtonPressed(IButtonable item)
+    {
+        switch (id)
+        {
+            case 0:
+                ImproveRelations((Character)item);
+                break;
+            case 1:
+                IncreaseThreat((Character)item);
+                break;
+            case 2:
+                BlackmailStart((Evidence)item);
+                break;
+            case 3:
+                PublishEvidence((Evidence)item);
+                break;
         }
     }
 
@@ -87,4 +107,6 @@ public class NegotiationsPhase : Phase
         evidence.crime.published = true;
         //under construction
     }
+
+
 }

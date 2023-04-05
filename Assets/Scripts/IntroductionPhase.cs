@@ -23,7 +23,7 @@ public class IntroductionPhase : Phase
     }
 
     private void CharacterInit() {
-        foreach (Character charList in Character.allCharLists)
+        foreach (Character charList in Character.allCharacters)
             if (!charList.isPlayer)
             {
                 charList.GetComponent<CharAI>().CommitCrime();
@@ -31,5 +31,9 @@ public class IntroductionPhase : Phase
                 charList.GetComponent<CharAI>().CommitCrime();
             }
 
+    }
+
+    override public void ButtonPressed(IButtonable item) { 
+        
     }
 }

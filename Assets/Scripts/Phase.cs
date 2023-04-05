@@ -34,4 +34,5 @@ public abstract class Phase : MonoBehaviour
     }
 
     abstract protected void InputParcer();  //here should be reaction on pressed button
+    abstract public void ButtonPressed(IButtonable item); // return call from UI after button pressed
 }

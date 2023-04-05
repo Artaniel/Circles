@@ -107,4 +107,5 @@ public class FeedPhase : Phase
         EndPhase();
     }
 
+    override public void ButtonPressed(IButtonable item) { }
 }
