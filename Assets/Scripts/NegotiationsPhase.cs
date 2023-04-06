@@ -15,11 +15,10 @@ public class NegotiationsPhase : Phase
 
         buttonManager.AddReplic(Loc.Get("negotiationsImproveRelations"));   //0
         buttonManager.AddReplic(Loc.Get("negotiationsScare"));              //1
-        buttonManager.AddReplic(Loc.Get("negotiationsBlackmail"));          //2
-        buttonManager.AddReplic(Loc.Get("negotiationsPublishEvidence"));    //3
+        buttonManager.AddReplic(Loc.Get("negotiationsBlackmail"), Character.player.GetEvidencesByPublished(false,true).Count>0);          //2
+        buttonManager.AddReplic(Loc.Get("negotiationsPublishEvidence"), Character.player.GetEvidencesByPublished(false, true).Count > 0);    //3
         buttonManager.AddReplic(Loc.Get("negotiationsPressure"));           //4
         buttonManager.AddReplic(Loc.Get("negotiationsRelifPressure"));      //5
-
     }
 
     override protected void InputParcer()
@@ -41,13 +40,13 @@ public class NegotiationsPhase : Phase
         {
             buttonManager.Wipe();
             maintext.text += $"{Loc.Get("Choose evidence")} \n";
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByFirmness(true, false), this);            
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByPublished(false, true), this);            
         }
         else if (id == 3) //negotiationsPublishEvidence
         {
             buttonManager.Wipe();
             maintext.text += $"{Loc.Get("Choose evidence")} \n";
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByFirmness(true, false), this);
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByPublished(false, true), this);
         }
         else if (id == 4) //negotiationsPressure
         {
@@ -107,6 +106,4 @@ public class NegotiationsPhase : Phase
         evidence.crime.published = true;
         //under construction
     }
-
-
 }

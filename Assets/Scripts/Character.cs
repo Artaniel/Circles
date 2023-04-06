@@ -139,5 +139,20 @@ public class Character : MonoBehaviour, IButtonable
                 result.Add(evidence);
         }
         return result; 
-    }    
+    }
+
+    public List<IButtonable> GetEvidencesByPublished(bool addPublished, bool addNotPublished) {
+        List<IButtonable> result = new List<IButtonable>();
+        foreach (Evidence evidence in evidenceList)
+        {
+            if (evidence.firmnessOfProof == 100)
+            {
+                if (addPublished && evidence.crime.published)
+                    result.Add(evidence);
+                if (addNotPublished && !evidence.crime.published)
+                    result.Add(evidence);
+            }
+        }
+        return result;
+    }
 }
