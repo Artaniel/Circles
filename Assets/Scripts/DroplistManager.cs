@@ -5,35 +5,21 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 
-public class Convert {
-    public GameObject button;
-    public delegate void returnLink();
-}
-
-
 public class DroplistManager : MonoBehaviour
 {
     public GameObject droplistPanel;
     public GameObject[] buttons;
-    private Convert[] buttonRecords;
     public Character[] buttonSortedCharacters;
     public Evidence[] buttonSortedEvidences;
-    public enum DroplistType { anotherCharacters, playerCrimes, playerEvidences }
-    public DroplistType droplistType;
-    public enum ReturnDirrection { reserchPhase, negotiationImproveRelations, negotiationThreat, negotiationsBlackmailStart, publishEvidence }
-    public ReturnDirrection returnDirrection;
 
     public GameObject buttonPrefab;
 
-    private static GameObject phaseController;
     public static DroplistManager instance;
 
     private void Awake()
     {
         if (!instance)
             instance = this;
-        phaseController = GameObject.FindWithTag("PhaseController");
-        if (!phaseController) Debug.LogWarning("Cant find phase controller");
     }
 
     public void CloseDroplist()
