@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crime : MonoBehaviour
+public class Crime : MonoBehaviour, IButtonable
 {
     public Character guilty;
     public Character arbitter;
@@ -43,5 +43,10 @@ public class Crime : MonoBehaviour
         guilty.crimeList.Add(this);
         footprintsOfThisCrime.Add(footPrint);
         Footprint.footprintsList.Add(footPrint);
+    }
+
+    public string GetButtonText()
+    {
+        return $"{guilty.charName} {decription} {footprintsOfThisCrime[0].difficulty}";
     }
 }

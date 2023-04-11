@@ -16,7 +16,7 @@ public class ResearchPhase : Phase
         buttonManager.AddReplic(Loc.Get("researchRandom"), Character.player.GetAvailableForPlayerFootprints().Count > 0);     //0
         buttonManager.AddReplic(Loc.Get("researchEvidence"), Character.player.ViableEvidences(false).Count > 0);   //1
         buttonManager.AddReplic(Loc.Get("researchChar"));       //2
-        buttonManager.AddReplic(Loc.Get("researchSelf"));       //3
+        buttonManager.AddReplic(Loc.Get("researchSelf"), Character.player.GetCrimes(true).Count > 0);       //3
     }
 
     override protected void InputParcer()

@@ -155,4 +155,15 @@ public class Character : MonoBehaviour, IButtonable
         }
         return result;
     }
+
+    public List<IButtonable> GetCrimes(bool onlyNotCleared) {
+        List<IButtonable> result = new List<IButtonable>();
+        foreach (Crime crime in crimeList)
+        {
+            if (!(crime.footprintsOfThisCrime[0].difficulty >= 10 && onlyNotCleared)) // пересмотреть если футпринтов всеже будет много
+                result.Add(crime);
+        }
+        return result;
+    }
+
 }
