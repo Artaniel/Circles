@@ -45,23 +45,8 @@ public class ResearchPhase : Phase
         }
         else if (id == 1) //researchEvidence
         {
-            if (Character.player.evidenceList.Count > 0) // переделать с случайного на конкретный выбор через droplist
-            {
-                Evidence evidence = Character.player.evidenceList[Random.Range(0, Character.player.evidenceList.Count)];
-                bool rollIsSucessful = evidence.RollForFirmness(Character.player);
-                if (rollIsSucessful)
-                    maintext.text += Loc.Get("evidenceReserchSucess");
-                else
-                    maintext.text += Loc.Get("evidenceReserchFail");
-
-                maintext.text += evidence.crime.guilty.charName + "\n";
-                maintext.text += "firmness=" + evidence.firmnessOfProof + "\n";
-            }
-            else
-            {
-                maintext.text += Loc.Get("evidenceReserchFail");
-            }
-            EndPhase();
+            buttonManager.Wipe();
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByFirmness(false, true), this);
         }
         else if (id == 2) { //researchChar
             buttonManager.Wipe();
@@ -69,24 +54,8 @@ public class ResearchPhase : Phase
         }
         else if (id == 3) //researchSelf
         {
-            List<Footprint> availableFootprints = new List<Footprint>();
-            foreach (Crime crime in Character.player.crimeList)
-                foreach (Footprint footprint in crime.footprintsOfThisCrime)
-                    if (footprint.difficulty < 10)
-                        availableFootprints.Add(footprint);
-            if (availableFootprints.Count > 0)
-            {
-                Footprint choisenFootprint = availableFootprints[Random.Range(0, availableFootprints.Count)];
-                //надо както придумать выбор скиллов в зависимости от типа футпринта. Пока пусть будет Cha+intimidation
-                maintext.text += "was " + choisenFootprint.difficulty + "\n";
-                choisenFootprint.difficulty += RollManager.Roll(Character.player.Cha + Character.player.intimidation);
-                maintext.text += "now " + choisenFootprint.difficulty + "\n";
-            }
-            else
-            {
-                maintext.text += Loc.Get("evidenceReserchFail");
-            }
-            EndPhase();
+            buttonManager.Wipe();
+            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCrimes(true), this);
         }
         else
         {
@@ -95,7 +64,7 @@ public class ResearchPhase : Phase
         }
     }
 
-    public void CharacterChoisen(Character character) {
+    public void DigUnderCharacter(Character character) {
         List<Footprint> viableFootprints = new List<Footprint>();
         foreach (Crime crime in character.crimeList)
             foreach (Footprint footprint in crime.footprintsOfThisCrime)
@@ -139,19 +108,31 @@ public class ResearchPhase : Phase
         else
             maintext.text += Loc.Get("noEvidence");
         EndPhase();
-
     }
 
-    public void EvidenceChoisen(Evidence evidence)
+    public void ResearchEvidence(Evidence evidence)
     {
+        maintext.text += $"was {evidence.firmnessOfProof}\n";
+        evidence.firmnessOfProof += RollManager.Roll(Character.player.Per + Character.player.investigation);
+        maintext.text += $"now {evidence.firmnessOfProof}\n";
+        EndPhase();
+    }
 
+    private void CoverCrime(Crime crime)
+    {
+        maintext.text += $"was {crime.footprintsOfThisCrime[0].difficulty}\n";
+        crime.footprintsOfThisCrime[0].difficulty += RollManager.Roll(Character.player.Cha + Character.player.intimidation); // подумать еще про статы
+        maintext.text += $"now {crime.footprintsOfThisCrime[0].difficulty}\n";
+        EndPhase();
     }
 
     override public void ButtonPressed(IButtonable item)
     {
         if (item is Character)
-            CharacterChoisen((Character)item);
+            DigUnderCharacter((Character)item);
         else if (item is Evidence)
-            EvidenceChoisen((Evidence)item);
+            ResearchEvidence((Evidence)item);
+        else if (item is Crime)
+            CoverCrime((Crime)item);
     }
 }
