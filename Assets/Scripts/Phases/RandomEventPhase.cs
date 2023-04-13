@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomEventPhase : Phase
 {
     public GameObject evidencePrefab;
+    public float blackmainPressureMultiplier = 0.1f;
 
     override public void PhaseRun()
     {
@@ -21,6 +22,12 @@ public class RandomEventPhase : Phase
         if (id == 0) ChangeRandomRelation(10);
         else if (id == 1) ChangeRandomRelation(-10);
         else if (id == 2) GetRandomEvidence();
+
+        foreach (Blackmail blackmail in Character.player.blackmailList)
+        {
+            Character.player.pressure[blackmail.crime.guilty] += (100 - Character.player.pressure[blackmail.crime.guilty]) * blackmainPressureMultiplier; 
+        }
+
         EndPhase();
     }
 

@@ -104,6 +104,8 @@ public class NegotiationsPhase : Phase
 
     public void PublishEvidence(Evidence evidence) {
         evidence.crime.published = true;
+        maintext.text += $"Published {evidence.crime.guilty} {evidence.crime.decription}. Now it does almost nothing.";
         //under construction
+        EndPhase();
     }
 }
