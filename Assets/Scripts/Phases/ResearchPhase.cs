@@ -113,7 +113,7 @@ public class ResearchPhase : Phase
     public void ResearchEvidence(Evidence evidence)
     {
         maintext.text += $"was {evidence.firmnessOfProof}\n";
-        evidence.firmnessOfProof += RollManager.Roll(Character.player.Per + Character.player.investigation);
+        evidence.firmnessOfProof += RollManager.Roll(Character.player.Per + Character.player.investigation) * 10f;
         maintext.text += $"now {evidence.firmnessOfProof}\n";
         EndPhase();
     }
