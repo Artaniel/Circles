@@ -15,7 +15,7 @@ public class NegotiationsPhase : Phase
 
         buttonManager.AddReplic(Loc.Get("negotiationsImproveRelations"));   //0
         buttonManager.AddReplic(Loc.Get("negotiationsScare"));              //1
-        buttonManager.AddReplic(Loc.Get("negotiationsBlackmail"), Character.player.GetEvidencesByPublished(false,true).Count>0);          //2
+        buttonManager.AddReplic(Loc.Get("negotiationsBlackmail"), Character.player.GetEvidencesByPublished(false,true,true).Count>0);          //2
         buttonManager.AddReplic(Loc.Get("negotiationsPublishEvidence"), Character.player.GetEvidencesByPublished(false, true).Count > 0);    //3
         buttonManager.AddReplic(Loc.Get("negotiationsPressure"));           //4
         buttonManager.AddReplic(Loc.Get("negotiationsRelifPressure"));      //5
@@ -99,7 +99,8 @@ public class NegotiationsPhase : Phase
 
     public void BlackmailStart(Evidence evidence) {
         Blackmail blackmail = Instantiate(blackmailPrefab).GetComponent<Blackmail>();
-        blackmail.Init(evidence);        
+        blackmail.Init(evidence);
+        EndPhase();
     }
 
     public void PublishEvidence(Evidence evidence) {

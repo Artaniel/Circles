@@ -25,7 +25,10 @@ public class RandomEventPhase : Phase
 
         foreach (Blackmail blackmail in Character.player.blackmailList)
         {
-            Character.player.pressure[blackmail.crime.guilty] += (100 - Character.player.pressure[blackmail.crime.guilty]) * blackmainPressureMultiplier; 
+            if (!Character.player.pressure.ContainsKey(blackmail.crime.guilty))
+                Character.player.pressure.Add(blackmail.crime.guilty, 0);
+            Character.player.pressure[blackmail.crime.guilty] += (100 - Character.player.pressure[blackmail.crime.guilty]) * blackmainPressureMultiplier;
+            maintext.text += $"{blackmail.victim.charName} pressure {Character.player.pressure[blackmail.crime.guilty]}";
         }
 
         EndPhase();

@@ -10,6 +10,7 @@ public class Evidence : MonoBehaviour, IButtonable
     public bool isTypeKnown;
     public bool isCriminalKnown;
     public float firmnessOfProof = 0; //0..100
+    public Blackmail blackmail;
 
     public bool RollForFirmness(Character owner) {
         int sucesses = RollManager.Roll(owner.Per + owner.investigation);
