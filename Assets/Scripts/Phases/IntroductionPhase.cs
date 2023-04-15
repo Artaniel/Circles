@@ -33,7 +33,5 @@ public class IntroductionPhase : Phase
 
     }
 
-    override public void ButtonPressed(IButtonable item) { 
-        
-    }
+    override public void ButtonPressed(IButtonable item) { }
 }
