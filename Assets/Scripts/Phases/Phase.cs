@@ -13,24 +13,20 @@ public abstract class Phase : MonoBehaviour
 
     virtual public void PhaseRun() {
         isInEndPhase = false;
-        buttonManager.OnButtonPressed.AddListener(InputEndPhaseCheck);
+        //buttonManager.OnButtonPressed.AddListener(InputEndPhaseCheck);
     }
 
     virtual public void EndPhase() {
         isInEndPhase = true;
         buttonManager.Wipe();
-        buttonManager.AddReplic(Loc.Get("next")); 
+        buttonManager.AddReplic(Loc.Get("next"), NextButton); 
     }
 
-    public void InputEndPhaseCheck()
+    private void NextButton()
     {
-        if (isInEndPhase)
-        {
-            buttonManager.OnButtonPressed.RemoveAllListeners();
-            isInEndPhase = false;
-            nextPhase.PhaseRun();
-        }
-        else InputParcer();
+        isInEndPhase = false;
+        nextPhase.PhaseRun();
+
     }
 
     public void BackButtonPressed() {
@@ -39,6 +35,5 @@ public abstract class Phase : MonoBehaviour
         PhaseRun();
     }
 
-    abstract protected void InputParcer();  //here should be reaction on pressed button
     abstract public void ButtonPressed(IButtonable item); // return call from UI after button pressed
 }

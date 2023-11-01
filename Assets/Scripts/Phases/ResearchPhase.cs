@@ -13,55 +13,44 @@ public class ResearchPhase : Phase
         base.PhaseRun();
         maintext.text = Loc.Get("researchDesc");
         buttonManager.Wipe();
-        buttonManager.AddReplic(Loc.Get("researchRandom"), Character.player.GetAvailableForPlayerFootprints().Count > 0);     //0
-        buttonManager.AddReplic(Loc.Get("researchEvidence"), Character.player.ViableEvidences(false).Count > 0);   //1
-        buttonManager.AddReplic(Loc.Get("researchChar"));       //2
-        buttonManager.AddReplic(Loc.Get("researchSelf"), Character.player.GetCrimes(true).Count > 0);       //3
+        buttonManager.AddReplic(Loc.Get("researchRandom"), Character.player.GetAvailableForPlayerFootprints().Count > 0, ResearchRandom);
+        buttonManager.AddReplic(Loc.Get("researchEvidence"), Character.player.ViableEvidences(false).Count > 0, ResearchEvidence);
+        buttonManager.AddReplic(Loc.Get("researchChar"), ResearchChar); 
+        buttonManager.AddReplic(Loc.Get("researchSelf"), Character.player.GetCrimes(true).Count > 0, ResearchSelf);
     }
 
-    override protected void InputParcer()
-    {
-        int id = buttonManager.currentButtonPressedId;
-        if (id == 0) //researchRandom
+    private void ResearchRandom() {
+        List<Footprint> availableFootprints = Character.player.GetAvailableForPlayerFootprints();
+        if (availableFootprints.Count > 0)
         {
-            List<Footprint> availableFootprints = Character.player.GetAvailableForPlayerFootprints();
-            if (availableFootprints.Count > 0)
-            {
-                Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count)]; // get random from list, needed to be coisen by player later                
-                Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
-                newEvidence.Init(choisenFootPrint, Character.player);
+            Footprint choisenFootPrint = availableFootprints[Random.Range(0, availableFootprints.Count)]; // get random from list, needed to be coisen by player later                
+            Evidence newEvidence = Instantiate(evidencePrefab).GetComponent<Evidence>();
+            newEvidence.Init(choisenFootPrint, Character.player);
 
-                newEvidence.RollForFirmness(newEvidence.holder);
+            newEvidence.RollForFirmness(newEvidence.holder);
 
-                maintext.text += Loc.Get("evidenceFound");
-                maintext.text += newEvidence.crime.guilty.charName + "\n";
-                maintext.text += "firmness=" + newEvidence.firmnessOfProof + "\n";
-            }
-            else
-            {
-                maintext.text += Loc.Get("noEvidence");
-            }
-            EndPhase();
-        }
-        else if (id == 1) //researchEvidence
-        {
-            buttonManager.Wipe();
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByFirmness(false, true), this);
-        }
-        else if (id == 2) { //researchChar
-            buttonManager.Wipe();
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
-        }
-        else if (id == 3) //researchSelf
-        {
-            buttonManager.Wipe();
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCrimes(true), this);
+            maintext.text += Loc.Get("evidenceFound");
+            maintext.text += newEvidence.crime.guilty.charName + "\n";
+            maintext.text += "firmness=" + newEvidence.firmnessOfProof + "\n";
         }
         else
         {
-            maintext.text += "Placeholder\n"; 
-            EndPhase();
+            maintext.text += Loc.Get("noEvidence");
         }
+        EndPhase();
+    }
+
+    private void ResearchEvidence() {
+        buttonManager.Wipe();
+        DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByFirmness(false, true), this);
+    }
+    private void ResearchChar() {
+        buttonManager.Wipe();
+        DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
+    }
+    private void ResearchSelf() {
+        buttonManager.Wipe();
+        DroplistManager.instance.MakeDropDownFormList(Character.player.GetCrimes(true), this);
     }
 
     public void DigUnderCharacter(Character character) {

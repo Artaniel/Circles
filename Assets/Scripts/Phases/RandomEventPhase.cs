@@ -66,6 +66,5 @@ public class RandomEventPhase : Phase
         }
     }
 
-    override protected void InputParcer() {}
     override public void ButtonPressed(IButtonable item) {}
 }

@@ -11,11 +11,11 @@ public class ChoiseButtonsManager : MonoBehaviour
     public TextMeshProUGUI[] buttonTexts;
     private int activeButtons = 0;
     public int currentButtonPressedId = 0;
-    public UnityEvent OnButtonPressed;
-    
+
+    public delegate void Callback();
+
     private void Awake()
     {
-        if (OnButtonPressed == null) OnButtonPressed = new UnityEvent();
         Wipe();
     }
 
@@ -32,31 +32,23 @@ public class ChoiseButtonsManager : MonoBehaviour
         currentButtonPressedId = 0;
     }
 
-    public int AddReplic(string text, bool isAvaible) {
+    public int AddReplic(string text, bool isAvaible, Callback callback) {
         if (isAvaible)
-            return AddReplic(text);
+            return AddReplic(text, callback);
         else
         {
-            int buttonID = AddReplic(text);
+            int buttonID = AddReplic(text, callback);
             buttons[buttonID].GetComponent<Button>().interactable = false;
             return buttonID;
         }
     }
 
-    public int AddReplic(string text) { //returns button ID
+    public int AddReplic(string text, Callback callback) { //returns button ID
         buttons[activeButtons].SetActive(true);
         buttonTexts[activeButtons].text = text;
+        buttons[activeButtons].GetComponent<Button>().onClick.RemoveAllListeners();
+        buttons[activeButtons].GetComponent<Button>().onClick.AddListener(delegate {callback(); });
         activeButtons++;
         return activeButtons-1;
-    }
-
-    public void OnButtonPress(GameObject button)
-    {
-        for (int i = 0; i < activeButtons; i++)
-            if (button == buttons[i])
-            {
-                currentButtonPressedId = i;
-                OnButtonPressed.Invoke();
-            }
     }
 }

@@ -13,51 +13,50 @@ public class NegotiationsPhase : Phase
         maintext.text = Loc.Get("NegotiationsDescription") + "\n";
         buttonManager.Wipe();
 
-        buttonManager.AddReplic(Loc.Get("negotiationsImproveRelations"));   //0
-        buttonManager.AddReplic(Loc.Get("negotiationsScare"));              //1
-        buttonManager.AddReplic(Loc.Get("negotiationsBlackmail"), Character.player.GetEvidencesByPublished(false,true,true).Count>0);          //2
-        buttonManager.AddReplic(Loc.Get("negotiationsPublishEvidence"), Character.player.GetEvidencesByPublished(false, true).Count > 0);    //3
-        buttonManager.AddReplic(Loc.Get("negotiationsPressure"));           //4
-        buttonManager.AddReplic(Loc.Get("negotiationsRelifPressure"));      //5
+        buttonManager.AddReplic(Loc.Get("negotiationsImproveRelations"), ImproveRelations);
+        buttonManager.AddReplic(Loc.Get("negotiationsScare"), Scare);
+        buttonManager.AddReplic(Loc.Get("negotiationsBlackmail"), Character.player.GetEvidencesByPublished(false,true,true).Count>0, Blackmail);
+        buttonManager.AddReplic(Loc.Get("negotiationsPublishEvidence"), Character.player.GetEvidencesByPublished(false, true).Count > 0, PublishEvidence);
+        buttonManager.AddReplic(Loc.Get("negotiationsPressure"), AddPressure);
+        buttonManager.AddReplic(Loc.Get("negotiationsRelifPressure"), RelifPressure);
     }
 
-    override protected void InputParcer()
-    {
-        id = buttonManager.currentButtonPressedId;
-        if (id == 0) //negotiationsImproveRelations
-        {
-            buttonManager.Wipe();
-            maintext.text += $"{Loc.Get("Choose person")} \n";
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
-        }
-        else if (id == 1) //negotiationsScare
-        {
-            buttonManager.Wipe();
-            maintext.text += $"{Loc.Get("Choose person")} \n";
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
-        }
-        else if (id == 2) //negotiationsBlackmail
-        {
-            buttonManager.Wipe();
-            maintext.text += $"{Loc.Get("Choose evidence")} \n";
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByPublished(false, true), this);            
-        }
-        else if (id == 3) //negotiationsPublishEvidence
-        {
-            buttonManager.Wipe();
-            maintext.text += $"{Loc.Get("Choose evidence")} \n";
-            DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByPublished(false, true), this);
-        }
-        else if (id == 4) //negotiationsPressure
-        {
+    private void ImproveRelations() {
+        id = 0;
+        buttonManager.Wipe();
+        maintext.text += $"{Loc.Get("Choose person")} \n";
+        DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
+    }
+
+    private void Scare() {
+        id = 1;
+        buttonManager.Wipe();
+        maintext.text += $"{Loc.Get("Choose person")} \n";
+        DroplistManager.instance.MakeDropDownFormList(Character.player.GetCaractersExceptMe(), this);
+    }
+
+    private void Blackmail() {
+        id = 2;
+        buttonManager.Wipe();
+        maintext.text += $"{Loc.Get("Choose evidence")} \n";
+        DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByPublished(false, true), this);
+    }
+
+    private void PublishEvidence() {
+        id = 3;
+        buttonManager.Wipe();
+        maintext.text += $"{Loc.Get("Choose evidence")} \n";
+        DroplistManager.instance.MakeDropDownFormList(Character.player.GetEvidencesByPublished(false, true), this);
+    }
+
+    private void AddPressure() {
+        maintext.text += "UnderCoustruction";
+        EndPhase();
+    }
+
+    private void RelifPressure() { 
             maintext.text += "UnderCoustruction";
-            EndPhase();
-        }
-        else if (id == 5) //negotiationsRelifPressure
-        {
-            maintext.text += "UnderCoustruction";
-            EndPhase();
-        }
+            EndPhase();    
     }
 
     override public void ButtonPressed(IButtonable item)

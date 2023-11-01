@@ -17,11 +17,6 @@ public class IntroductionPhase : Phase
         EndPhase();
     }
 
-    override protected void InputParcer()
-    {
-
-    }
-
     private void CharacterInit() {
         foreach (Character charList in Character.allCharacters)
             if (!charList.isPlayer)
